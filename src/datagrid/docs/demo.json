@@ -1,0 +1,20 @@
+{
+    "cname":"datagrid",
+    "discribe":"dataGrid(表格)",
+    "demos":[
+         {"demoDiscribe":"基本","html":"datagrid/docs/datagrid_basic.html","js":"datagrid/docs/datagrid_basic.js"}
+        ,{"demoDiscribe":"排序","html":"datagrid/docs/datagrid_sort.html","js":"datagrid/docs/datagrid_sort.js"}
+        ,{"demoDiscribe":"锁定列","html":"datagrid/docs/datagrid_lockColumn.html","js":"datagrid/docs/datagrid_lockColumn.js"}
+        ,{"demoDiscribe":"多选","html":"datagrid/docs/datagrid_multiSelect.html","js":"datagrid/docs/datagrid_multiSelect.js"}
+        ,{"demoDiscribe":"树","html":"datagrid/docs/datagrid_tree.html","js":"datagrid/docs/datagrid_tree.js"}
+        ,{"demoDiscribe":"多表头","html":"datagrid/docs/datagrid_columnGroup.html","js":"datagrid/docs/datagrid_columnGroup.js"}
+        ,{"demoDiscribe":"表头过滤","html":"datagrid/docs/datagrid_filter.html","js":"datagrid/docs/datagrid_filter.js"}
+        ,{"demoDiscribe":"自定义单元格","html":"datagrid/docs/datagrid_itemRenderer.html","js":"datagrid/docs/datagrid_itemRenderer.js"}
+        ,{"demoDiscribe":"单元格变色","html":"datagrid/docs/datagrid_labfunction.html","js":"datagrid/docs/datagrid_labfunction.js"}
+        ,{"demoDiscribe":"设置行变色","html":"datagrid/docs/datagrid_rowcolor.html","js":"datagrid/docs/datagrid_rowcolor.js"}
+        ,{"demoDiscribe":"Excel导出","html":"datagrid/docs/datagrid_excel.html","js":"datagrid/docs/datagrid_excel.js"}
+        ,{"demoDiscribe":"自定义工具条","html":"datagrid/docs/datagrid_tool.html","js":"datagrid/docs/datagrid_tool.js"}
+        ,{"demoDiscribe":"后台分页","html":"datagrid/docs/datagrid_server.html","js":"datagrid/docs/datagrid_server.js"}
+        ,{"demoDiscribe":"不分页","html":"datagrid/docs/datagrid_nopage.html","js":"datagrid/docs/datagrid_nopage.js"}
+    ]
+}

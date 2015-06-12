@@ -1,0 +1,8 @@
+{
+    "cname":"bindHtml",
+    "discribe":"bindHtml(绑定html)",
+    "demos":[
+        {"demoDiscribe": "html 代码段","html":"bindHtml/docs/demo.html","js":"bindHtml/docs/demo.js"},
+        {"demoDiscribe":"html 元素","html":"bindHtml/docs/demo_elem.html","js":"bindHtml/docs/demo_elem.js"}
+    ]
+}

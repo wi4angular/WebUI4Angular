@@ -1,0 +1,9 @@
+<div ng-controller="DataGridDemoBasicCtrl">
+    <wi-datagrid  dataProvider="dgData" wid="dg" width="100%" height="300"
+                  pagemode="client" showno="true" itemDoubleClick="dblClick" >
+        <wi-datagrid-column headtext="姓名" datafield="username" width="150"></wi-datagrid-column>
+        <wi-datagrid-column headtext="住址" datafield="address" width="90"></wi-datagrid-column>
+        <wi-datagrid-column headtext="日期" datafield="date" align='center'></wi-datagrid-column>
+        <wi-datagrid-column headtext="数字" datafield="num"></wi-datagrid-column>
+    </wi-datagrid>
+</div>

@@ -1,0 +1,114 @@
+<div class="wi-datagrid" ng-class="{'wi-datagrid-wordWrap':!_wordwrap}">
+    <div class="wi-datagrid-ltop" >
+        <table ng-if="lockcolumns">
+            <colgroup>
+                <col ng-if="showno">
+                <col ng-if="multiselect">
+                <col ng-repeat="columnItem in columnDefs track by $index" ng-if="$index<lockcolumns"
+                     width="{{columnItem.width+'px'}}">
+            </colgroup>
+            <tbody>
+            <tr ng-repeat="head in headarray track by $index">
+                <td ng-if="$index==0 && showno" class="wi-datagrid-keycol" rowspan="{{::maxLevel}}"></td>
+                <td ng-if="$index==0 && multiselect" class="wi-datagrid-keycol" rowspan="{{::maxLevel}}">
+                    <input type="checkbox" class="wi-checkbox" ng-click="checkAll()" ng-checked="isCheckAll"  />
+                </td>
+                <td ng-repeat="child in head track by $index" ng-if="child.colindex<lockcolumns" colspan="{{::child.colspan}}" rowspan="{{::child.rowspan}}" ng-click="sort(child.colindex)" ng-mousemove="headMousemove($event)" ng-mouseleave="headMouseleave()" ng-mousedown="startColumnDrag($event,child,true)">
+                    <div class="wi-datagrid-headdiv">
+                        <div ng-if="child.headrenderer" ng-include src="child.headrenderer" class="wi-display-inlineb"></div>
+                        <span ng-if="!child.headrenderer">{{child.text}}</span>
+                        <span ng-if="sortcolumn.datafield==child.datafield" class="wi-datagrid-caret{{sortcolumn.direction}}"></span>
+                    </div>
+                </td>
+                <td>&nbsp;</td><!-- 防止合并行高度自适应 -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="wi-datagrid-rtop">
+        <table ng-style="{width: (rightW + 17) + 'px'}">
+            <colgroup>
+                <col ng-if="showno && !lockcolumns">
+                <col ng-if="multiselect && !lockcolumns">
+                <col ng-repeat="columnItem in columnDefs track by $index" ng-if="!lockcolumns||$index>=lockcolumns"
+                     width="{{columnItem.width+'px'}}">
+                <col width="17px">
+            </colgroup>
+            <tbody>
+            <tr ng-repeat="head in headarray track by $index">
+                <td ng-if="$index==0 && showno && !lockcolumns" class="wi-datagrid-keycol" rowspan="{{::maxLevel}}"></td>
+                <td ng-if="$index==0 && multiselect && !lockcolumns" class="wi-datagrid-keycol" rowspan="{{::maxLevel}}">
+                    <input type="checkbox" class="wi-checkbox" ng-click="checkAll()" ng-checked="isCheckAll" />
+                </td>
+                <td ng-repeat="child in head track by $index" ng-if="!lockcolumns||child.colindex>=lockcolumns" colspan="{{::child.colspan}}" rowspan="{{::child.rowspan}}" ng-click="sort(child.colindex)" ng-mousemove="headMousemove($event)" ng-mouseleave="headMouseleave()" ng-mousedown="startColumnDrag($event,child,false)">
+                    <div class="wi-datagrid-headdiv">
+                        <div ng-if="child.headrenderer" ng-include src="child.headrenderer" class="wi-display-inlineb"></div>
+                        <span ng-if="!child.headrenderer">{{child.text}}</span>
+                        <span ng-if="sortcolumn.datafield==child.datafield" class="wi-datagrid-caret{{sortcolumn.direction}}"></span>
+                    </div>
+                </td>
+                <td style="border-color: transparent; cursor: default;">&nbsp;</td><!-- 防止合并行高度自适应 -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="wi-datagrid-lbottom">
+        <table id="lBottomTable">
+            <col ng-if="showno">
+            <col ng-if="multiselect">
+            <col ng-repeat="columnItem in columnDefs track by $index" ng-if="$index<lockcolumns"
+                 width="{{columnItem.width+'px'}}">
+            <tr id="lBottomTR{{::$index}}" ng-style="{'background-color':pdata.__rowcolor,'height':_rowheight+'px'}" ng-class="{'wi-datagrid-row-selected':pdata.__ischecked}">
+
+            </tr>
+            <tr class="wi-datagrid-cover"><td></td></tr>
+        </table>
+    </div>
+
+    <div class="wi-datagrid-rbottom">
+        <table id="rBottomTable" ng-style="{width: rightW + 'px'}">
+            <col ng-if="showno && !lockcolumns">
+            <col ng-if="multiselect && !lockcolumns">
+            <col ng-repeat="columnItem in columnDefs track by $index" ng-if="!lockcolumns||$index>=lockcolumns"
+                 width="{{columnItem.width+'px'}}" >
+            <tr id="rBottomTR{{::$index}}" ng-style="{'background-color':pdata.__rowcolor,'height':_rowheight+'px'}" ng-class="{'wi-datagrid-row-selected':pdata.__ischecked}">
+
+            </tr>
+        </table>
+    </div>
+
+    <div class="wi-datagrid-pagebar">
+        <div class="wi-datagrid-page-left" ng-if="pagemode!=='none'">
+            <span>
+                每页
+                <select id="pageSizeSel" ng-model="$parent.selectedPageSize"  ng-options="op for op in pageselect||[20,30,40,50,60]">
+                </select>
+                条&nbsp;,&nbsp;共{{dataCount}}条
+            </span>
+            <span>
+                <a href="#" ng-click="pageNum===1?null:doPage(1)" title="首页"><span class="icon-step-backward"></span></a>
+                <a href="#" ng-click="pageNum===1?null:doPage(pageNum-1)" title="上一页"><span class="icon-backward"></span></a>
+                &nbsp;&nbsp;{{pageNum}}/{{pageCount}}&nbsp;&nbsp;
+                <a href="#" ng-click="pageNum===pageCount?null:doPage(pageNum+1)" title="下一页"><span class="icon-forward"></span></a>
+                <a href="#" ng-click="pageNum===pageCount?null:doPage(pageCount)" title="尾页"><span class="icon-step-forward"></span></a>
+                <input type="text" class="wi-datagrid-page-num" onclick="javascript:this.select()" ng-keydown="gotoPage($event)" />
+            </span>
+        </div>
+        <div class="wi-datagrid-page-right">
+            <span ng-if="pagebarrenderer" ng-include src="pagebarrenderer"/>
+            <span ng-if="!(showrefresh=='false')">
+                <a href="#" ng-click="dorefresh()"><span class="icon-refresh"></span> 刷新</a>
+            </span>
+            <span ng-if="showexcel">
+                <a href="#" download="导出文件.xls" ng-click="export2excel($event)"><span class="icon-share-alt"></span> 导出excel</a>
+            </span>
+        </div>
+    </div>
+
+    <div class="wi-datagrid-followbar" style='display: none; left: 0;'></div>
+
+    <div class='wi-datagrid-maskdiv' style='visibility: hidden'></div>
+    <div id="ngTranscludeDiv" ng-transclude></div>
+</div>

@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp" style="height: 100%">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>datagrid</title>
+        <link rel="stylesheet" href="../../themes/default/theme.css"/>
+        <link rel="stylesheet" href="../../themes/default/datagrid.css"/>
+        <link rel="stylesheet" href="../../themes/default/tree.css"/>
+        <!--<link rel="stylesheet" href="../../themes/default/divbox.css"/>-->
+        <script src="../../lib/resize-listener.js"></script>
+		<!--<script src="../../lib/angular.js"></script>-->
+        <script src="../../lib/angular-1.3.0-beta.13/angular.js"></script>
+        <script src="../resizelistener/resizelistener.js"></script>
+		<script src="datagrid.js"></script>
+        <script src="../bindHtml/bindHtml.js"></script>
+        <!--<script src="../divbox/divbox.js"></script>-->
+</head>
+<body ng-controller="mainCtrl" style="height: 100%">
+
+<div style="width: 90%;height:90%;border:solid 1px crimson;">
+	<button type="button" class="wi-btn" ng-click="getSelectedItems()"><span class="icon-check"></span> 获取选中行</button>
+    <!-- lockcolumns="4" -->
+<!-- dataurl="http://localhost:8080/AngularJS/getUsersByParam.json" -->
+    <wi-datagrid  dataProvider="dgData1" wid="dg11" multiSelect="true" width="90%"  height="80%"
+               params="reqparams" pagemode="client" pageselect="[20,40,50]" showno='true'
+               headerHeight='40' rowHeight='40' lockcolumns="4"
+               itemDoubleClick="dblclick" treeField="username" collapse="true"
+               pagebarRenderer="toolbox.html"
+               itemOpen="itemOpenHandler"
+               columns="columnDefs"
+               showexcel="true">
+        <script type="text/ng-template" id="toolbox.html">
+            <a href="#" ng-click="$emit('custom')">自定义</a>
+        </script>
+
+        <wi-datagrid-column headtext="姓名" datafield="username" width="150" ></wi-datagrid-column>
+        <wi-datagrid-column headtext="住址" datafield="address" width="90">
+                 <script type="text/ng-template" id="myColumnRender1.html">
+                     <span id="renderDiv" style="word-break: keep-all;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">
+                            <label ng-click="$emit('myclick',data)">我来自render：{{data.sex===1?'男':'女'}}16888-----{{data.address}}</label>
+                     </span>
+                 </script>
+                 <span style="color: blue">{{zys}}{{labelFun({'zys':'ddddddddddddddd'})}}</span>
+                 <itemrender>
+                     <span style="color: blue">{{zys}}{{labelFun({'zys':'ddddddddddddddd'})}}</span>
+                 </itemrender>
+        </wi-datagrid-column>
+
+        <wi-datagrid-column-group text="个人信息#">
+            <wi-datagrid-column headtext="姓名#" datafield="username2" width="90"></wi-datagrid-column>
+            <wi-datagrid-column headtext="住址#" datafield="address"></wi-datagrid-column>
+        </wi-datagrid-column-group>
+
+        <wi-datagrid-column-group text="表头@">
+            <wi-datagrid-column-group text="个人信息@">
+                <wi-datagrid-column headtext="姓名@" datafield="username2" width="90"></wi-datagrid-column>
+                <wi-datagrid-column headtext="住址@" datafield="address" width="90"></wi-datagrid-column>
+            </wi-datagrid-column-group>
+            <wi-datagrid-column headtext="其它@" datafield="address"></wi-datagrid-column>
+        </wi-datagrid-column-group>
+
+        <wi-datagrid-column headtext="性别介绍" datafield="sex" headrenderer="myHeadRender.html" labFunction="setSexLabelFun" width="90" sortable="true">
+            <script type="text/ng-template" id="myHeadRender.html">
+                <div ng-init="sexType=['男','女']">
+                    <select>
+                        <option ng-repeat="s in sexType">{{s}}</option>
+                    </select>
+                </div>
+            </script>
+        </wi-datagrid-column>
+        <wi-datagrid-column headtext="姓名1(自动列宽)" datafield="username2" sortable="true" align='right'></wi-datagrid-column>
+        <wi-datagrid-column headtext="日期" datafield="date" sortable="true" align='center'></wi-datagrid-column>
+        <wi-datagrid-column headtext="zw" datafield="zw" sortable="true"></wi-datagrid-column>
+        <wi-datagrid-column headtext="数字" datafield="num" sortable="true"></wi-datagrid-column>
+        <wi-datagrid-column headtext="姓名2" datafield="username2" ></wi-datagrid-column>
+        <wi-datagrid-column headtext="姓名3" datafield="username2" width="90"></wi-datagrid-column>
+        <wi-datagrid-column headtext="姓名4" datafield="username2"  width="90"></wi-datagrid-column>
+        <wi-datagrid-column headtext="姓名5" datafield="username2" width="90"></wi-datagrid-column>
+        <wi-datagrid-column headtext="姓名6" datafield="username2" width="90"></wi-datagrid-column>
+        <wi-datagrid-column headtext="姓名7" datafield="username2" width="90"></wi-datagrid-column>
+
+    </wi-datagrid>
+
+</div>
+<br><br>
+<script>
+    function mainCtrl($scope,$rootScope,dgService) {
+    	$scope.selectedPageSize = 20;
+    	$scope.dg11={};
+    	var dataurl="http://localhost:8080/AngularJS/getUsersByParam.json";
+    	//$scope.dg11.init({'dataurl':dataurl})
+
+        function pad(num, n) {
+            return (Array(n).join(0) + num).slice(-n);
+        }
+
+        var dgData1=[];
+        var dgData2=[];
+        for(var i=0;i<50;i++){
+            var obj={};
+            obj.sex=i%2;
+            obj.zw=i%2==0?'测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本测试文本':'作业';
+            obj.username='username'+i;
+            obj.username2='username2'+i;
+            obj.address='address'+i;
+            obj.date='2014-07-'+pad((i+1),2);
+            obj.num = (i+1)*100;
+            obj.dy1= 'dy1';
+            obj.dy2= 'dy2';
+            obj.dy3= 'dy3';
+            var children = obj.children = [];
+            if(i!=2) {
+                for (var j = 0; j < 3; j++) {
+                    var child={};
+                    child.sex=j%2;
+                    child.zw=j%2==0?'危险':'作业';
+                    child.username='#child'+j;
+                    child.username2='#child2'+j;
+                    child.address='#address'+j;
+                    child.date='2014-07-'+pad((j+1),2);
+                    child.num = (j+1)*100;
+                    children.push(child);
+                    if(i==1 && j==1) {
+                        var cr = child.children = [];
+                        for (var k = 0; k < 3; k++) {
+                            var c={};
+                            c.sex=k%2;
+                            c.zw=k%2==0?'危险':'作业';
+                            c.username='##child'+k;
+                            c.username2='##child2'+k;
+                            c.address='##address'+k;
+                            c.date='2014-07-'+pad((k+1),2);
+                            c.num = (k+1)*100;
+                            cr.push(c);
+
+                            if(k==1 && j==1) {
+                                var cr2 = c.children = [];
+                                for (var m = 0; m < 3; m++) {
+                                    var c2={};
+                                    c2.sex=m%2;
+                                    c2.zw=m%2==0?'危险':'作业';
+                                    c2.username='###child'+m;
+                                    c2.username2='###child2'+m;
+                                    c2.address='###address'+m;
+                                    c2.date='2014-07-'+pad((m+1),2);
+                                    c2.num = (m+1)*100;
+                                    cr2.push(c2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                obj.isbranch = 'true';
+            }
+
+            dgData1.push(obj);
+        }
+        $scope.dgData1=dgData1;
+        //$scope.dg11={};
+        $scope.dg22={};
+        for(i=0;i<40;i++){
+            var obj={};
+            obj.sex=i%2;
+            obj.name='username'+i;
+            obj.address='address'+i;
+            dgData2.push(obj);
+        }
+        $scope.dgData2=dgData2;
+        
+        $scope.reqparams={};
+
+        //不支持labelfunction
+        $scope.columnDefs=[{'headtext':'动态1','datafield':'dy1'},
+                        {'headtext':'动态2','datafield':'dy2'},
+                        {'headtext':'动态3','datafield':'dy3','itemrenderer':'myColumnRender1.html'}];
+
+
+
+        $scope.test= function () {
+            console.log('test::::::::::::::');
+            alert('tttt');
+        }
+
+//        var dg={}
+//        $scope.dg=dg;
+        $scope.getSelectedItems= function () {
+            console.log($scope.dg11.getSelectedItem())
+            //console.log(dgService.getSelectedItems(dgData1));
+        }
+
+        $scope.$on('myclick', function (d,data) {
+            console.log(data);
+            //alert(data.address);
+            data.address='1111111111111111111';
+        })
+
+        $scope.setSexLabelFun=function(data){
+//            console.log('调用到了页面中的setSexLabelFun--------->');
+//            console.log(data);
+
+            if(data){
+                if(data.sex===1){
+                    return '男';
+                }else{
+                    return '女';
+                }
+            }else{
+                return '未知';
+            }
+        }
+        $scope.addressLableFun=function(data) {
+            //console.log('调用到了页面中的addressLableFun：：：：');
+            //console.log(data);
+
+            if (data) {
+                if (data.sex === 1) {
+                    return '男人的住址：：' + data.address;
+                } else {
+                    return '女人的住址：：' + data.address;
+                }
+            } else {
+                return '中性人的住址：：' + data.address;
+            }
+        }
+             $scope.zys="朱云山"; ///transclude:true时，datagridcolumn标签内的scope是外层的scope，而不是datagridcolumn自己的scope
+
+        $scope.dblclick = function (data){
+            alert(data.address);
+        }
+
+        $scope.$on('custom', function (event) {
+            // how to fix
+//            setTimeout(function(){ alert(111); });
+
+            //$scope.$evalAsync
+//            $scope.$evalAsync(function () {
+//                alert(333);
+//            })
+
+            // Error: [$rootScope:inprog] $apply already in progress
+            alert(222);
+        })
+
+        // 节点展开
+        $scope.itemOpenHandler = function (data, callback) {
+            setTimeout(function () {
+                var children = [];
+
+                for (var j = 0; j < 4; j++) {
+                    var child={};
+                    child.sex=j%2;
+                    child.zw=j%2==0?'危险':'作业';
+                    child.username='@child'+j;
+                    child.username2='child2'+j;
+                    child.address='address'+j;
+                    child.date='2014-07-'+pad((j+1),2);
+                    child.num = (j+1)*100;
+                    if(j==0) {
+                        child.isbranch='true';
+                    }
+                    children.push(child);
+                }
+
+                callback(data, children);
+            },1000)
+        }
+
+                // 计算watch数量 和 scope数量 right？
+//        setTimeout(function () {
+//            var count = 0, scopeCount = 0;
+//            (function countWatchers(scope) {
+//                console.log(scope.$id)
+//                scopeCount ++;
+//                var next = scope.$$nextSibling;
+//                while(next) {
+//                    console.log(next.$id)
+//                    scopeCount ++;
+//                    next.$$watchers && (count += next.$$watchers.length);
+//                    next = next.$$nextSibling;
+//                }
+//                scope.$$watchers && (count += scope.$$watchers.length);
+//                scope.$$childHead && countWatchers(scope.$$childHead);
+//            })($rootScope);
+//
+//            console.log(count, scopeCount)
+//
+//        },3000)
+    }
+
+    angular.module('myApp',['ui.wisoft.datagrid'])
+            .controller('mainCtrl',mainCtrl);
+</script>
+
+</body>
+</html>
