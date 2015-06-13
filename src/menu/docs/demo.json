@@ -1,0 +1,11 @@
+{
+    "cname":"menu",
+    "discribe":"menu(菜单)",
+    "demos":[
+        {"demoDiscribe":"固定方向菜单","html":"menu/docs/demo.html","js":"menu/docs/demo.js"},
+        {"demoDiscribe":"自适应方向菜单","html":"menu/docs/demo0.html","js":"menu/docs/demo0.js"},
+        {"demoDiscribe":"右键菜单","html":"menu/docs/demo1.html","js":"menu/docs/demo1.js"},
+        {"demoDiscribe":"二级菜单、关键字过滤","html":"menu/docs/demo2.html","js":"menu/docs/demo2.js"},
+        {"demoDiscribe":"图标、禁用、事件","html":"menu/docs/demo3.html","js":"menu/docs/demo3.js"}
+    ]
+}

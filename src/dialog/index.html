@@ -1,0 +1,270 @@
+<!doctype html>
+<html ng-app="exampleDialog">
+<head>
+    <meta charset="utf-8">
+    <title>wiDialog demo</title>
+    <!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="../../themes/blue/theme.css">
+    <link rel="stylesheet" href="../../themes/blue/dialog.css">
+    <!--<link rel="stylesheet" href="../../themes/default/wiDialog-theme-default.css">-->
+    <!--<link rel="stylesheet" href="../css/ngDialog-theme-plain.css">-->
+
+    <style type="text/css">
+        .demomsg { margin-bottom: .5em;}
+        .demobtn { float: right; margin: 0 0 0 .5em;}
+        .demobtn:focus {
+            -webkit-animation: wi-dialog-pulse 1.1s infinite;
+            animation: wi-dialog-pulse 1.1s infinite;
+            outline: none;
+        }
+        .demobtn:focus { -webkit-animation: none; animation: none;}
+        .demobtn.demobtn-primary { background: #3288e6; color: #fff;}
+        .demobtn.demobtn-secondary { background: #e0e0e0; color: #777;}
+    </style>
+</head>
+<body id="mainBody" ng-controller="MainCtrl" style="border:solid 3px red">
+
+
+<a href="" ng-click="openByStringTpl()">字符串模板</a><br />
+<a href="" ng-click="openByScriptTpl()">script 模板</a><br />
+<a href="" ng-click="openDefaultByUrl()">通过url弹出dialog</a><br />
+<a href="" ng-click="openConfirm()">打开confirm窗口</a><br />
+<a href="" ng-click="openDefault1()">不带头部的dialog</a><br />
+<a href="" ng-click="openTimed()">定时关闭的dialog</a><br />
+<a href="" ng-click="openNotify()">使用promise监听窗口关闭</a><br />
+<!--<a href="" ng-click="openInlineController()">使用行内controller</a><br />-->
+<a href="" ng-click="">指定width和height,height可以不指定</a><br />
+
+<!--<a href="" ng-click="openIframeWindow()">打开带iframe的dialog（需要指定iframe的宽高）</a><br />-->
+
+<!--<div style="height: 400px">-->
+
+<!--</div>-->
+<iframe src="iframe.html" height="400px" width="800px">
+</iframe>
+
+<script type="text/ng-template" id="firstDialogId">
+    <div>
+        <div class="demomsg">
+            <h3>wiDialog template</h3>
+            <p ng-show="theme">Test content for <code>{{theme}}</code></p>
+            <p ng-show="ngDialogData.foo">Data passed through directive: <code>{{ngDialogData.foo}}</code></p>
+            <p ng-show="dialogModel.message">Scope passed through directive: <code>{{dialogModel.message}}</code></p>
+        </div>
+        <div class="wi-dialog-buttons">
+            <button type="button" class="wi-btn demobtn demobtn-primary" ng-click="openSecond()">Open next</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="withInlineController">
+    <div class="demomsg">
+        <h3>wiDialog template</h3>
+        <p ng-show="theme">Test content for <code>{{theme}}</code></p>
+        <p ng-show="exampleExternalData">Example data from external service: <code>{{exampleExternalData}}</code></p>
+    </div>
+    <div class="wi-dialog-buttons">
+        <button type="button" class="wi-btn demobtn demobtn-primary" ng-click="closeThisDialog()">Close</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="secondDialogId">
+    <a href="" ng-click="closeSecond()">关闭所有dialog!</a>
+</script>
+
+<script type="text/ng-template" id="modalDialogId">
+    <div>
+        <div class="demomsg">
+            <h3>wiDialog modal example</h3>
+            <p>The <code>.openConfirm()</code> function returns a promise that is resolved when confirmed and rejected when otherwise closed. Modal dialogs by default do not close when clicked outside the dialog or when hitting escape. This can ofcourse be overridden when opening the dialog.</p>
+            <p>Confirm can take a value. Enter one here for example and see the console output: <input ng-model="confirmValue" /></p>
+        </div>
+        <div class="wi-dialog-buttons">
+            <button type="button" class="wi-btn demobtn demobtn-primary" ng-click="confirm(confirmValue)">Confirm</button>
+            <button type="button" class="wi-btn demobtn demobtn-secondary" ng-click="closeThisDialog('button')">Cancel</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="withIframeDialog">
+    <div style="padding: 0;overflow: hidden;overflow: hidden">
+        <iframe id="frame_content" name="frame_content" ng-src="withIframeWindow.html" height="500px" width="100%"  style="padding: 0;overflow: hidden;border: none;" >
+        </iframe>
+    </div>
+</script>
+
+<script src="../../lib/angular.js"></script>
+<script src="../position/position.js"></script>
+<script src="dialog.js"></script>
+<!--<script src="../../build/WebUI4Angular-tpls-all.js" ></script>-->
+<script>
+    var app = angular.module('exampleDialog', ['ui.wisoft.dialog']);
+
+    // Example of how to set default values for all dialogs
+//    app.config(['wiDialogProvider', function (wiDialogProvider) {
+//        wiDialogProvider.setDefaults({
+//            className: 'wi-dialog-theme-default',
+//            plain: false,
+//            showClose: true,
+//            closeByDocument: false,
+//            closeByEscape: true,
+//            appendTo: false
+//        });
+//    }]);
+
+    app.controller('MainCtrl', function ($scope, $rootScope, wiDialog) {
+        $rootScope.jsonData = '{"foo": "bar"}';
+        $rootScope.theme = 'wi-dialog-theme-default';
+
+        $scope.open = function () {
+            wiDialog.open({ template: 'firstDialogId', controller: 'InsideCtrl' });
+        };
+
+        $scope.openByStringTpl = function () {
+            wiDialog.open({
+                plain:true,
+                template:'<div style="color: red;height: 60px;"><img src="1.jpg">使用字符串模板</div>',
+                controller: 'InsideCtrl',
+                width:280
+            });
+        };
+        $scope.openByScriptTpl = function () {
+            wiDialog.open({
+                template: 'firstDialogId',
+                controller: 'InsideCtrl',
+                width:280
+            });
+        };
+        $scope.openDefault1 = function () {
+            wiDialog.open({
+//                template: 'firstDialogId',
+                plain:true,
+                template:'<div style="color: red; height: 150px;"><p>测试一下</p><p>测试一下</p></div>',
+                controller: 'InsideCtrl',
+                width:280,
+                withoutHead:true
+            });
+        };
+        $scope.openDefaultByUrl = function () {
+            wiDialog.open({
+                template: 'template.html',
+                controller: 'InsideCtrl',
+                className: 'wi-dialog-theme-default',
+                closeByEscape:false,
+                data:$rootScope.jsonData,
+                title:'测试弹出窗',
+                width:680
+            });
+        };
+//        $scope.openIframeWindow = function () {
+//            var dialog=wiDialog.open({
+//                template: 'withIframeDialog',
+//                controller: 'InsideCtrl',
+//                closeByEscape:false,
+//                title:'带Iframe的弹出窗',
+//                width:500
+//            });
+//            window.dataForIframe=function(){
+//                return {'username':'user001','age':'32'};
+//            }
+//            dialog.closePromise.then(function (data) {
+//                console.log('iframea窗口关闭');
+//            });
+//        };
+
+        $scope.openConfirm = function () {
+            wiDialog.openConfirm({
+                template: 'modalDialogId',
+//                className: 'wi-dialog-theme-default'
+//                plain:true,
+                width:600,
+                title:'confirm窗口'
+            }).then(function (value) {
+                console.log('Modal promise resolved. Value: ', value);
+            }, function (reason) {
+                console.log('Modal promise rejected. Reason: ', reason);
+            });
+        };
+
+//        $scope.openInlineController = function () {
+//            $rootScope.theme = 'wi-dialog-theme-plain';
+//
+//            wiDialog.open({
+//                template: 'withInlineController',
+//                controller: ['$scope', '$timeout', function ($scope, $timeout) {
+//                    var counter = 0;
+//                    var timeout;
+//                    function count() {
+//                        $scope.exampleExternalData = 'Counter ' + (counter++);
+//                        timeout = $timeout(count, 450);
+//                    }
+//                    count();
+//                    $scope.$on('$destroy', function () {
+//                        $timeout.cancel(timeout);
+//                    });
+//                }]
+//            });
+//        };
+
+        $scope.openTimed = function () {
+            var dialog = wiDialog.open({
+                template: '<p> 1秒后自己关闭! </p>',
+                plain: true,
+                title:'提示',
+                width:200,
+                closeByDocument: false,
+                closeByEscape: false
+            });
+            setTimeout(function () {
+                dialog.close();
+            }, 1000);
+        };
+
+        $scope.openNotify = function () {
+            var dialog = wiDialog.open({
+                template: '<p> 使用dialog.closePromise.then(fn)来在窗口关闭的时候做你想做的处理 </p>' +
+                        '<div class="wi-dialog-buttons"><button type="button" class="wi-btn demobtn demobtn-primary" ng-click="closeThisDialog(1)">Close Me</button></div>',
+                plain: true,
+                title:'使用promise处理窗口关闭'
+            });
+            dialog.closePromise.then(function (data) {
+                console.log('wiDialog closed' + (data.value === 1 ? ' using the button' : '') + ' and notified by promise: ' + data.id);
+            });
+        };
+
+        $rootScope.$on('wiDialog.opened', function (e, $dialog) {
+            console.log('wiDialog opened: ' + $dialog.attr('id'));
+        });
+
+        $rootScope.$on('wiDialog.closed', function (e, $dialog) {
+            console.log('wiDialog closed: ' + $dialog.attr('id'));
+        });
+
+        window.dataForIframe=function(){
+//            return {'username':'user0015555','age':'32'};
+        }
+    });
+
+    app.controller('InsideCtrl', function ($scope, wiDialog) {
+        $scope.dialogModel = {
+            message : 'message from passed scope'
+        };
+        $scope.openSecond = function () {
+            wiDialog.open({
+                template: '<a href="" ng-click="closeSecond()">关闭所有dialog!</a>',
+                plain: true,
+                closeByEscape: false,
+                controller: 'SecondModalCtrl'
+            });
+        };
+    });
+
+    app.controller('SecondModalCtrl', function ($scope, wiDialog) {
+        $scope.closeSecond = function () {
+            wiDialog.closeAll();
+        };
+    });
+
+</script>
+</body>
+</html>

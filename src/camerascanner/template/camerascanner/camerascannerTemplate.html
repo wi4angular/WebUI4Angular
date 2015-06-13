@@ -1,0 +1,71 @@
+<div>
+    <div>
+        <a href="javascript:void(0);" class="wi-btn icon-picture" ng-click="open()">
+            <span ng-transclude></span>
+        </a>
+    </div>
+
+    <div class="wi-camerascanner wi-camerascanner-hide">
+
+        <div class="wi-camerascanner-main wi-clearf" style="width: 792px;height: 592px;">
+            <div class="wi-dialog-head">
+                拍照上传
+                <span style="margin-left: 130px; visibility: hidden;" class="wi-camerascanner-head-select">
+                    请选择视频设备:
+                </span>
+                <span class="wi-dialog-close icon-remove" ng-click="close()"></span>
+            </div>
+            <div class="wi-camerascanner-opt">
+                <object id="XwebcamXobjectX"
+                        type="application/x-shockwave-flash"
+                        data="demo/camerascanner/docs/jscam.swf"
+                        width="500"
+                        height="500">
+                    <param name="movie" value="demo/camerascanner/docs/jscam.swf" />
+                    <param name="FlashVars" value="cw=1200&ch=1600&vw=375&vh=500" />
+                    <param name="allowScriptAccess" value="always" />
+                    <param name="bgcolor" value="#FFFFCC" />
+                    <!--<param name="wmode" value="Opaque">-->
+                </object>
+                <div class="wi-camerascanner-toolbar">
+                    <a ng-click="rotate(-90)" href="javascript:void(0);" class="wi-camerascanner-left" title="逆时针旋转"></a>
+                    <a ng-click="rotate(90)" href="javascript:void(0);" class="wi-camerascanner-right" title="顺时针旋转"></a>
+                    <a ng-click="resetCut()" href="javascript:void(0);" class="wi-camerascanner-reset" title="重新裁剪"></a>
+                </div>
+            </div>
+
+            <div class="wi-camerascanner-list" style="width: 260px; height:465px;">
+            </div>
+
+            <div class="wi-camerascanner-qulitity">
+                图片质量:
+                <select ng-model="camResolution" ng-change="resolution()">
+                    <option value ="1200*1600">1200*1600(约1.92MB)</option>
+                    <option value ="960*1280">960*1280(约1.23MB)</option>
+                    <option value ="600*800">600*800(约480KB)</option>
+                </select>
+            </div>
+            <div class="wi-camerascanner-btns">
+                <a class="wi-camerascanner-btn" href="javascript:void(0);">拍照</a>
+                <a class="wi-btn" href="javascript:void(0);" ng-click="upload()">上传</a>
+            </div>
+
+        </div>
+
+        <wi-imageview width="800" height="600" adaptive="true" imagedata="imagedata" previous="previous()" next="next()" close="viewClose()"></wi-imageview>
+
+        <script type="text/ng-template" id="cameraScannerConfirm">
+            <div>
+                <div style="margin: 20px 30px;">
+                    文件名：<input ng-model="filename"/><br>
+                </div>
+                <div class="wi-alert-toolbar">
+                    <button class="wi-btn"  ng-click="closeThisDialog()">取消</button>
+                    <button class="wi-btn"  ng-click="confirm(filename)">确认</button>
+                </div>
+            </div>
+        </script>
+
+    </div>
+
+</div>

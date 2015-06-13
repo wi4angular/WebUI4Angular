@@ -1,0 +1,34 @@
+<style>
+    .wi-transition{
+        transition:all linear 0.5s;
+        -webkit-transition:all linear 0.5s;
+        -moz-transition:all linear 0.5s;
+        -o-transition:all linear 0.5s;
+        width: 200px; background-color: #d3d3d3
+    }
+    .opened{
+        width: 300px;;
+    }
+</style>
+<div ng-controller="TransitionDemoCtrl">
+    <p>
+        $transition 接受 3 个参数：<br />
+        $element： transition 的 jqLite 元素，变化<br />
+        change：<br />
+        *   - string，要加到 element 上的 class。<br />
+        *   - object, 要应用到 element 上的 style 哈希表。<br />
+        *   - function, 将被调用以使变化发生的函数。<br />
+        options：若定义了 options.animation，则执行的是动画（animation）操作，若省略则默认为过渡(transition)操作。
+    </p>
+    <div class="wi-transition">
+        <button class="wi-btn" ng-click="toggleStyle($event)">byStyle</button>
+    </div>
+    <br />
+    <div class="wi-transition">
+        <button class="wi-btn" ng-click="toggleClass($event)">byClass</button>
+    </div>
+    <br />
+    <div class="wi-transition">
+        <button class="wi-btn" ng-click="toggleFun($event)">byFun</button>
+    </div>
+</div>

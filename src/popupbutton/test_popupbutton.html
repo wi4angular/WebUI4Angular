@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myApp" style="height: 100%">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>comboBox</title>
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+    <link rel="stylesheet" href="../../themes/default/popup.css"/>
+    <link rel="stylesheet" href="../../themes/default/tree.css"/>
+    <link rel="stylesheet" href="../../themes/default/popupbutton.css"/>
+</head>
+
+<body ng-controller="mainCtrl as mc" ng-cloak>
+
+<div style="position: absolute;left: 100px;top:200px;padding: 50px;">
+    <wi-popupButton label="click me!" isOpen="mc.isopen" width="150">
+        <div>
+            <wi-tree dataProvider="mc.simpleData"
+                     idField="id"
+                     pidField="parentid"
+                     labelField="name"
+                     multiSelect="true"
+                     itemClick="mc.itemClickHandler"
+                     filterBy="mc.keyword"
+                     orderBy="id"
+                     itemOpen="mc.itemOpenHandler"
+                     id="mc.mytree"
+                    >
+            </wi-tree>
+            <hr/>
+            <input type="button" value="确定" ng-click="mc.clickHandler()"/>
+        </div>
+    </wi-popupButton>
+</div>
+
+<div ng-repeat="select in mc.selectedItem | filter:{type:'person'}">
+    {{select.name}}
+</div>
+
+<script src="../../lib/angular-1.3.6/angular.js"></script>
+<script src="../position/position.js"></script>
+<script src="../popup/popup.js"></script>
+<script src="popupbutton.js"></script>
+<script src="../tree/tree.js"></script>
+
+<script>
+    function mainCtrl() {
+        var vm = this;
+
+        vm.mytree = {};
+
+        vm.simpleData = [
+            {id:'1',name:'无锡市',parentid:'root'},
+            {id:'11',name:'新区',parentid:'1'},
+            {id:'111',name:'赵钱孙',parentid:'11',type:'person'},
+            {id:'112',name:'孙李周',parentid:'11',type:'person'},
+            {id:'113',name:'周吴郑',parentid:'11',type:'person'}
+        ];
+
+        vm.clickHandler = function () {
+            vm.selectedItem = vm.mytree.selectedItem();
+            vm.isopen=false;
+        }
+    }
+
+    angular.module('myApp',['ui.wisoft.popupbutton','ui.wisoft.tree'])
+            .controller('mainCtrl',mainCtrl);
+
+</script>
+
+</body>
+</html>

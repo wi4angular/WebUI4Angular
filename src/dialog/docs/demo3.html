@@ -1,0 +1,38 @@
+<script type="text/ng-template" id="firstDialogId">
+    <div style="padding: 10px;" >
+        <div>
+            <h4>从scope参数中取得数据</h4><br>
+            <p ng-show="dialogData.username">公司名称: <code>{{dialogData.username}}</code></p><br>
+            <p ng-show="dialogData.address">公司地址: <code>{{dialogData.address}}</code></p>
+        </div>
+        <div>
+            <h4>调用scope中的方法(打开console查看)</h4><br>
+            <a ng-click="sayHello()">调用sayHello()</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="modalDialogId">
+    <div style="padding: 10px;">
+        <div>
+            <h3>wiDialog modal example</h3>
+            <p>The <code>.openConfirm()</code> 方法在窗口确认或取消时都会返回一个promise，可以调用promise.then(fn)来获得回传的数据。</p>
+            <p>通过Confirm回传数据.（输入内容，点击确认后查看cosole控制台）: <br>
+                姓名：<input ng-model="userinfo.username" /><br>
+                住址：<input ng-model="userinfo.address" /><br>
+            </p>
+        </div>
+        <div style="float: right">
+            <button type="button"  ng-click="confirm(userinfo)">确认</button>
+            <button type="button"  ng-click="closeThisDialog()">取消</button>
+        </div>
+    </div>
+</script>
+
+<div ng-controller="dialogCtrl3">
+    <a href="" ng-click="openByScriptTpl()">使用scope给打开的窗口传递数据</a><br>
+    <p>
+        (说明：通过传递scope可以给打开的窗口传递数据，实际上此scope会作为打开窗口scope的父scope，所以打开的窗口可以调用scope的方法，修改scope中的对象值。)
+    </p><br><br>
+    <a href="" ng-click="openConfirm()">通过confirm窗口回传数据</a><br>
+</div>

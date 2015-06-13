@@ -1,0 +1,7 @@
+{
+    "cname":"searchinput",
+    "discribe":"searchinput(搜索)",
+    "demos":[
+        {"demoDiscribe":"常用","html":"searchinput/docs/demo.html","js":"searchinput/docs/demo.js"}
+    ]
+}

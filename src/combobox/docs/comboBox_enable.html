@@ -1,0 +1,12 @@
+<div ng-controller="ComboBoxDemoEnableCtrl">
+    <wi-comboBox dataProvider="mydata"
+                 itemChange="itemChangeHandler"
+                 width="500"
+                 rowCount="8"
+                 enable="{{myEnable}}">
+    </wi-comboBox>
+    可用：<input type="checkbox" class="wi-checkbox" ng-checked="myEnable" ng-click="myEnable = !myEnable"/>
+    {{myEnable}}
+
+    <p>{{selected | json}}</p>
+</div>

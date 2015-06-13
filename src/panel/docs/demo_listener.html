@@ -1,0 +1,18 @@
+<div ng-controller="PanelDemoListenerCtrl as pc">
+    <p>
+        <button class="wi-btn" ng-click="toggle()">{{isopen ? '关闭':'打开'}}</button>，请在控制台中查看输出
+    </p>
+    <wi-panel heading="PANEL TEST ONE"
+              head-icon="misc/tempimg/panel/icon.gif"
+              head-tools="'collapse,close'"
+              onopened="opened"
+              onclosed="closed"
+              oncollapse="col"
+              onexpand="exp"
+              is-open="isopen">
+        <p>onopened 打开后触发</p>
+        <p>onclosed 关闭后触发</p>
+        <p>oncollapse 折叠时触发</p>
+        <p>onexpand 展开时触发</p>
+    </wi-panel>
+</div>

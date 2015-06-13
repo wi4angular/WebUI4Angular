@@ -1,0 +1,12 @@
+{
+   "cname":"tabset",
+   "discribe":"tabset(标签页)",
+   "demos":[
+       {"demoDiscribe":"横向-基本功能","html":"tabset/docs/demo1.html","js":"tabset/docs/demo1.js"},
+       {"demoDiscribe":"横向-指定宽高","html":"tabset/docs/demo2.html","js":"tabset/docs/demo.js"},
+       {"demoDiscribe":"横向-禁止关闭","html":"tabset/docs/demo3.html","js":"tabset/docs/demo3.js"},
+       {"demoDiscribe":"纵向","html":"tabset/docs/demo4.html","js":"tabset/docs/demo.js"},
+       {"demoDiscribe":"纵向-指定宽高","html":"tabset/docs/demo5.html","js":"tabset/docs/demo.js"},
+       {"demoDiscribe":"自定义标签","html":"tabset/docs/demo_heading.html","js":"tabset/docs/demo.js"}
+   ]
+}

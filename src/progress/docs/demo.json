@@ -1,0 +1,9 @@
+{
+    "cname":"progress",
+    "discribe":"progress(进度条)",
+    "demos":[
+        {"demoDiscribe":"基本功能","html":"progress/docs/demo.html","js":"progress/docs/demo.js"}
+        ,{"demoDiscribe":"嵌入提示内容","html":"progress/docs/demoElem.html","js":"progress/docs/demoElem.js"}
+        ,{"demoDiscribe":"进度条样式","html":"progress/docs/demoType.html","js":"progress/docs/demoType.js"}
+    ]
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html ng-app="exampleDialog">
+<head>
+    <meta charset="utf-8">
+    <title>wiDialog demo</title>
+    <!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="../../themes/default/theme.css">
+    <link rel="stylesheet" href="../../themes/default/dialog.css">
+
+    <script src="../../lib/angular.js"></script>
+    <script src="../position/position.js"></script>
+    <script src="dialog.js"></script>
+</head>
+
+<style>
+
+</style>
+
+
+<body ng-controller="dialogCtrl" style="height: 1000px;">
+
+<script type="text/ng-template" id="firstDialogId">
+    <div>
+        删除数据！！！
+    </div>
+    <div style="float: right;">
+        <input type="button" value="关闭" ng-click="closeDialog()">
+    </div>
+</script>
+
+<br><br><br><br><br><br><br><br><br><br>
+<input type="button" value="test" ng-click="showDialog()" />
+<input type="button" value="普通提示" ng-click="showDialog1()" />
+<a href="" ng-click="openNotify()">使用promise监听窗口关闭</a><br>
+    <script>
+        var app = angular.module('exampleDialog', ['ui.wisoft.dialog']);
+        function dialogCtrl($scope,wiDialog){
+
+            var dialog;
+            $scope.showDialog1=function(){
+                wiDialog.open({
+                    title:'普通提示',
+                    plain:true,
+                    width:400,
+                    scope:$scope,
+                    overlay:false,
+                    template: '<div style="color: red">普通提示框！！</div>'
+                });
+            }
+
+            $scope.showDialog=function(){
+                dialog= wiDialog.open({
+                    title:'测试',
+                    plain:false,
+                    width:300,
+//                    height:300,
+                    scope:$scope,
+                    overlay:false,
+                    template: 'firstDialogId'
+                });
+                console.log(dialog);
+//                dialog.closePromise.then(function(data){
+//                    console.log(data);
+//                })
+            }
+
+            $scope.closeDialog=function(){
+                console.log(dialog);
+                dialog.close();
+            }
+
+            $scope.openNotify = function () {
+                var dialog = wiDialog.open({
+                    template: '<p style="padding: 10px"> 使用dialog.closePromise.then(fn)来监听窗口关闭 </p><br>' +
+                            '<div style="float: right"><button type="button" ng-click="closeThisDialog(1)">关闭</button></div>',
+                    plain: true,
+                    width:300,
+                    height:170,
+                    title:'使用promise监听窗口关闭'
+                });
+                dialog.closePromise.then(function (data) {
+                    console.log('wiDialog closed' + (data.value === 1 ? ' using the button' : '') + ' and notified by promise: ' + data.id);
+                });
+            };
+
+        }
+    </script>
+</body>
+</html>

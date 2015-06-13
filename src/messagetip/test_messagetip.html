@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html ng-app="ui.wisoft">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>MessageTip Demo</title>
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+    <link rel="stylesheet" href="../../themes/default/messagetip.css"/>
+</head>
+<body ng-controller="mainCtrl">
+    <input type="button" value="弹出" ng-click="open()"/>
+    <input type="button" value="关闭" ng-click="close()"/>
+
+    <script src="../../lib/angular-1.3.0/angular.js"></script>
+    <script src="messagetip.js"></script>
+    <script type="text/javascript">
+        angular.module('ui.wisoft', ['ui.wisoft.messagetip']).controller('mainCtrl', ['$scope','wiMessageTip', function($scope, wiMessageTip){
+            var t = '我的新消息<br><input name="democlick" type="button" value="点击测试" ng-click="clickHandler()" /><br>';
+            var tipid;
+            $scope.open = function() {
+                t = '我的新消息<br>'+t;
+                tipid = wiMessageTip.open({
+                    width: 250,
+                    //height: 150,
+                    title: '新消息',
+                    position: 'bottom',
+                    //delay: 5,
+                    //isshake: true,
+                    content: t,
+                    click: $scope.clickHandler
+                });
+            }
+
+            $scope.close = function() {
+                wiMessageTip.closeOne(tipid);
+            }
+
+            $scope.clickHandler = function(e) {
+                var elm = angular.element(e.target);
+                if (elm.attr('name') == 'democlick') {
+                    alert('弹框中按钮点击');
+                }
+            }
+        }]);
+    </script>
+</body>
+</html>

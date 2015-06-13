@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+    <link rel="stylesheet" href="../../themes/default/tooltip.css"/>
+</head>
+<body>
+<div ng-controller="TooltipCtrl" style="width: 600px;padding-left: 50px;padding-top: 50px;">
+    <div>
+        <label>动态文本</label>
+        <input type="text" ng-model="dynamicTooltipText">
+    </div>
+    <br>
+
+    <div>
+        <label>动态提示文本</label>
+        <input type="text" ng-model="dynamicTooltip">
+    </div>
+    <p>
+        <a href="#" tooltip="{{dynamicTooltip}}">{{dynamicTooltipText}}</a><br><br>
+        <a href="#" tooltip-placement="left" tooltip="左边">左边显示</a><br><br>
+        <a href="#" tooltip-placement="right" tooltip="右边">右边显示</a><br><br>
+        <a href="#" tooltip-placement="bottom" tooltip="底部">底部显示</a><br><br>
+        <a href="#" tooltip-popup-delay='1000' tooltip='延迟显示'>延迟1秒后显示</a><br><br>
+        <a href="#" tooltip-html-unsafe="{{htmlTooltip}}">HTML提示文本</a>
+    </p>
+
+    <p>chrome、opera 中，span 的连续行内元素使用 tooltip，隐藏 tooltip 项时空格被删，导致原间距消失。可在元素间添加 &amp;nbsp; 控制，或直接取消元素间的空字符。</p>
+    <p>
+        <span>
+            <button tooltip-placement="bottom" tooltip="提示1">提示1</button>&nbsp;
+            <button tooltip-placement="bottom" tooltip="提示2">提示2</button>&nbsp;
+            <button tooltip-placement="bottom" tooltip="提示3">提示3</button>&nbsp;
+        </span>
+    </p>
+
+    <form role="form">
+        <div>
+            <label>输入框提示</label>
+            <input type="text" value="Click me!" tooltip="我来了..." tooltip-trigger="focus" tooltip-placement="right"
+                   tooltip-append-to-body="true" tooltip-animation="false" class="form-control"/>
+            <!--<input type="text" value="Click me!" tooltip="我来了..." tooltip-append-to-body="true" class="form-control" />-->
+        </div>
+    </form>
+</div>
+<script src="../../lib/angular-1.3.6/angular.js"></script>
+<script src="../position/position.js"></script>
+<script src="../bindHtml/bindHtml.js"></script>
+<script src="tooltip.js"></script>
+<script>
+    angular.module('ui.wisoft', ['ui.wisoft.tooltip']/*, function( $tooltipProvider ) {
+     $tooltipProvider.options( { appendToBody: true } );
+     }*/)
+            .controller('TooltipCtrl', function ($scope) {
+                $scope.dynamicTooltip = '动态提示文本';
+                $scope.dynamicTooltipText = '动态文本';
+                $scope.htmlTooltip = '自定义<b style="color: #0000ff">HTML</b>提示!';
+            });
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,10 @@
+<div ng-controller="PanelDemoCtrl as pc">
+    <p>
+        <button class="wi-btn" ng-click="toggle()">{{isopen ? '关闭':'打开'}}</button>
+    </p>
+    <wi-panel heading="PANEL TEST ONE"
+              head-tools="'close'"
+              is-open="isopen">
+        <p>通过外部按钮可以控制显示</p>
+    </wi-panel>
+</div>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html ng-app="myApp" style="height: 100%">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>popup</title>
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+    <link rel="stylesheet" href="../../themes/default/popup.css"/>
+</head>
+
+<style>
+    .menudiv {
+        position:relative;
+
+    }
+    .menudiv > span{
+        display: block;
+        position:absolute;
+        top:2px;
+        right:5px;
+    }
+    .menudiv a {
+        display:inline-block;
+        width:100%
+    }
+
+</style>
+
+<body ng-controller="mainCtrl as mc" ng-cloak>
+
+<div style="position: absolute;left: 10px;">
+    <span class="wi-popup" is-open="mc.isopen1">
+        <input type="button" value="左上角"/>
+        <ul class="wi-popup-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </span>
+</div>
+
+<div style="position: absolute;right: 10px;">
+    <span class="wi-popup" on-toggle="mc.toggled(open)">
+        <input type="button" value="右上角"/>
+        <ul class="wi-popup-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </span>
+</div>
+
+<div style="position: absolute;left:10px; bottom: 10px;">
+    <span class="wi-popup" on-toggle="mc.toggled(open)">
+        <input type="button" value="左下角"/>
+        <ul class="wi-popup-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </span>
+</div>
+
+<div style="position: absolute;right:10px; bottom: 10px;">
+    <span class="wi-popup" on-toggle="mc.toggled(open)">
+        <input type="button" value="右下角"/>
+        <ul class="wi-popup-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </span>
+</div>
+
+<div style="position: absolute;left: 300px;">
+    <span class="wi-popup" on-toggle="mc.toggled(open)">
+        <input type="button" value="menu"/>
+        <ul class="wi-popup-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li class="divider"></li>
+        </ul>
+    </span>
+</div>
+
+<div style="position: absolute;right: 200px;top:300px;">
+    <span class="wi-popup" on-toggle="mc.toggled(open)">
+        <input type="button" value="menu3"/>
+        <ul class="wi-popup-menu" role="menu">
+            <li><a href="#">aaaa</a></li>
+            <li><a href="#">bbbb</a></li>
+            <li><a href="#">cccc</a></li>
+            <li class="divider"></li>
+            <li><a href="#">dddd</a></li>
+        </ul>
+    </span>
+</div>
+
+<script src="../../lib/angular-1.3.6/angular.js"></script>
+<script src="../position/position.js"></script>
+<script src="popup.js"></script>
+
+<script>
+
+    function mainCtrl() {
+        var vm = this;
+        vm.isopen1 = true;
+
+//        vm.toggled = function(open) {
+//            console.log('open: ', open);
+//        };
+
+        vm.mymenu = [
+            { text: '增加', click: menuclick(1),icon:'add' },
+            { text: '修改', click: menuclick(2),disable:true },
+            { line: true },
+            { text: '查看', click: menuclick(3) },
+            { text: '关闭', click: menuclick(4) }
+        ]
+
+        function menuclick(value) {
+//            console.log(value)
+        }
+
+    }
+
+    angular.module('myApp',['ui.wisoft.popup'])
+            .controller('mainCtrl',mainCtrl);
+
+</script>
+
+</body>
+</html>

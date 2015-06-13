@@ -1,0 +1,8 @@
+{
+   "cname":"messagetip",
+   "discribe":"messagetip(右下角提示框)",
+   "demos":[
+       {"demoDiscribe":"基础功能","html":"messagetip/docs/demo1.html","js":"messagetip/docs/demo1.js"},
+       {"demoDiscribe":"方法调用","html":"messagetip/docs/demo2.html","js":"messagetip/docs/demo2.js"}
+   ]
+}

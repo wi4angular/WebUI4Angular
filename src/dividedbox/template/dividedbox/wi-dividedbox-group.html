@@ -1,0 +1,13 @@
+<div class="wi-dividedbox-group"
+     ng-style="{ width:dividedboxG.type=='h'?'calc('+ dividedboxG.size +' + '+ dividedboxG.resize +'px)':'',
+        height:dividedboxG.type=='v'?'calc('+dividedboxG.size+' + '+dividedboxG.resize+'px)':''}">
+    <div class="wi-dividedbox-head wi-clearf" ng-class="{'wi-dividedbox-colled':dividedboxG.collapsed}">
+        <span class="wi-dividedbox-title">
+            <img class="wi-dividedbox-icon" ng-if="dividedboxG.icon" ng-src="{{dividedboxG.icon}}" />
+            {{dividedboxG.title}}
+        </span>
+        <div ng-class="'wi-display-none wi-dividedbox-collctrl-'+dividedboxG.collapseto" ng-click="doCollapse()"></div>
+    </div>
+    <div class="wi-dividedbox-cont" ng-transclude></div>
+    <div class="wi-dividedbox-bar" ng-mousedown="startResize()"></div>
+</div>

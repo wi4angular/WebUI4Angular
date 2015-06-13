@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft" style="height: 100%;">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>searchinput</title>
+    <link rel="stylesheet" href="../../themes/blue/theme.css"/>
+    <link rel="stylesheet" href="../../themes/blue/searchinput.css"/>
+</head>
+<body ng-cloak  ng-controller="mainCtrl as mc">
+<!--<wi-searchinput wi-value="mc.value" wi-tips="请输入关键字" onsearch=""></wi-searchinput>-->
+<wi-searchinput wi-tips="请输入关键字" onsearch="searchFun"></wi-searchinput>
+&nbsp;点击按钮显示搜索的内容：{{mc.value}}
+<script src="../../lib/angular.js"></script>
+<script src="searchinput.js"></script>
+<script>
+    angular.module('ui.wisoft', ['ui.wisoft.searchinput']).
+            controller('mainCtrl', ['$scope', function ($scope) {
+                var ctrl = this;
+                ctrl.value = '';
+                $scope.searchFun = function(selectItem){
+                    ctrl.value = selectItem;
+                }
+            }]);
+</script>
+</body>
+</html>

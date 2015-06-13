@@ -1,0 +1,14 @@
+<div ng-controller="MenuDemoCtrl3 as mc">
+    <p>数据源中通过【icon】指定菜单项图标，路径相对于菜单显示页面。</p>
+    <p>数据源中通过【enabled】设置为 false 禁用菜单项。</p>
+    <p>数据源中通过【event】指定简单的可执行 js 表达式，点击该项时执行。</p>
+    <p>复杂事件需绑定【selectitem】获取点击的菜单项（点击第二、三项时，请在控制台中查看结果）。</p>
+    <p>
+        <wi-menu adaptable="false"
+                 position="bottom-left"
+                 onselect="vm.selectFn"
+                 dataprovider="mc.data">
+            <input type="button" class="wi-btn" value="点击弹出菜单" />
+        </wi-menu>
+    </p>
+</div>

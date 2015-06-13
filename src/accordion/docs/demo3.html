@@ -1,0 +1,17 @@
+<div ng-controller="AccordionDemoCtrl3">
+    <p>
+        通过 headheight 设置标题部分高度；<br />
+        通过 wi-accordion-heading 添加自定义标题。
+    </p>
+    <wi-accordion headHeight="50">
+        <wi-accordion-group heading="标题一" >
+            内容一
+        </wi-accordion-group>
+        <wi-accordion-group is-open="status.open">
+            <wi-accordion-heading>
+                <span style="float: right; line-height: inherit;" ng-class="{'icon-chevron-down': status.open, 'icon-chevron-right': !status.open}"></span> 标题二，自定义
+            </wi-accordion-heading>
+            内容二
+        </wi-accordion-group>
+    </wi-accordion>
+</div>

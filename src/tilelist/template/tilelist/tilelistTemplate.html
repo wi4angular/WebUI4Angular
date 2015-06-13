@@ -1,0 +1,9 @@
+<div class="wi-titlelist">
+    <table class="wi-titlelist-table" cellspacing="0" cellpadding="0" ng-style="{'width': tableW,'height': tableH}">
+        <tr ng-repeat="rowItem in dataTable">
+            <td class="wi-titlelist-td" ng-repeat="data in rowItem track by $index" ng-style="{'width': colW,'height': rowH}">
+                <div class="wi-titlelist-cont" ng-if="itemrender" ng-include src="itemrender"></div>
+            </td>
+        </tr>
+    </table>
+</div>

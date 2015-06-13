@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+</head>
+<body>
+<style>
+    .wi-transition{
+        transition:all linear 0.5s;
+        -webkit-transition:all linear 0.5s;
+        -moz-transition:all linear 0.5s;
+        -o-transition:all linear 0.5s;
+        width: 200px; background-color: #d3d3d3;
+    }
+    .opened{
+        width: 300px;;
+    }
+</style>
+<div ng-controller="TransitionDemoCtrl">
+    <p>
+        $transition 接受 3 个参数：<br />
+        $element： transition 的 jqLite 元素，变化<br />
+        change：<br />
+        *   - string，要加到 element 上的 class。<br />
+        *   - object, 要应用到 element 上的 style 哈希表。<br />
+        *   - function, 将被调用以使变化发生的函数。<br />
+        options：若定义了 options.animation，则执行的是动画（animation）操作，若省略则默认为过渡(transition)操作。
+    </p>
+    <div class="wi-transition">
+        <button class="wi-btn" ng-click="toggleStyle($event)">byStyle</button>
+    </div>
+    <br />
+    <div class="wi-transition">
+        <button class="wi-btn" ng-click="toggleClass($event)">byClass</button>
+    </div>
+    <br />
+    <div class="wi-transition">
+        <button class="wi-btn" ng-click="toggleFun($event)">byFun</button>
+    </div>
+</div>
+<script src="../../lib/angular.js"></script>
+<script src="transition.js"></script>
+<script>
+    angular.module('ui.wisoft', ['ui.wisoft.transition']);
+    var TransitionDemoCtrl = ['$scope','$transition','$element', function($scope, $transition, $element) {
+        function transitionDone(){
+            console.log('变换完成');
+        }
+        $scope.toggleStyle = function(e){
+            var elem = (angular.element(e.target)).parent(),
+                change = {'width': '300px'};
+            $transition(elem, change).then(transitionDone, transitionDone);//transition （成功，失败）时执行回调函数，返回新的 promise 对象
+        };
+        $scope.toggleClass = function(e){
+            var elem = (angular.element(e.target)).parent(),
+                change = 'opened';
+            $transition(elem, change).then(transitionDone, transitionDone);//transition （成功，失败）时执行回调函数，返回新的 promise 对象
+        };
+        $scope.toggleFun = function(e){
+            var elem = (angular.element(e.target)).parent();
+            var change = function(){
+                elem.addClass('opened');
+            };
+            $transition(elem, change).then(transitionDone, transitionDone);//transition （成功，失败）时执行回调函数，返回新的 promise 对象
+        };
+    }];
+</script>
+</body>
+</html>
+
+

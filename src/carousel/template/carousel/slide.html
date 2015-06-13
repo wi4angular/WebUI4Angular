@@ -1,0 +1,7 @@
+<div ng-class="{
+    'wi-slide-active': leaving || (active && !entering),
+    'wi-slide-prev': (next || active) && direction=='prev',
+    'wi-slide-next': (next || active) && direction=='next',
+    'wi-slide-right': direction=='prev',
+    'wi-slide-left': direction=='next'
+  }" class="wi-slide" ng-transclude></div>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html ng-app="myApp" style="height: 100%">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>comboBox</title>
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+    <link rel="stylesheet" href="../../themes/default/popup.css"/>
+    <link rel="stylesheet" href="../../themes/default/combobox.css"/>
+</head>
+
+<body ng-controller="mainCtrl as mc" ng-cloak>
+
+<div style="position: absolute;left: 100px;top:100px;padding: 50px;">
+    <wi-comboBox dataProvider="mc.mydata"
+                 itemChange="mc.itemChangeHandler"
+                 width="150"
+                 rowCount="8"
+                 >
+    </wi-comboBox>
+
+    <!--selectedItem="mc.selected"-->
+    <wi-comboBox dataProvider="mc.mydata2"
+                 selectedItem="mc.selected2"
+                 labelField="label"
+                 editable="false"
+                 >
+    </wi-comboBox>
+
+    <wi-comboBox dataProvider="mc.mydata3"
+                 selectedItem="mc.selected2"
+                 labelField="label"
+                 dropdownWidth="200"
+                 >
+    </wi-comboBox>
+
+    <wi-comboBox dataProvider="mc.groupData"
+                 selectedItem="mc.selected4"
+                 labelField="text"
+                 groupField="group"
+                 width="250"
+                 rowCount="10"
+                 >
+    </wi-comboBox>
+    <br /><br />
+    <wi-comboBox dataProvider="mc.mydata5"
+                 selectedItem="mc.selected5"
+                 width="500"
+                 rowCount="8"
+                 multiselect="true"
+                 enable="{{mc.myEnable}}"
+                 >
+    </wi-comboBox>
+    可用：<input type="checkbox" class="wi-checkbox" ng-checked="mc.myEnable" ng-click="mc.myEnable = !mc.myEnable"/>
+    {{mc.myEnable}}
+</div>
+{{mc.selected | json}}
+<br/>
+{{mc.selected2 | json}}
+<br/>
+{{mc.selected4 | json}}
+<br/>
+{{mc.selected5 | json}}
+
+<script src="../../lib/angular-1.3.6/angular.js"></script>
+<script src="../position/position.js"></script>
+<script src="../popup/popup.js"></script>
+<script src="combobox.js"></script>
+
+<script>
+
+    (function(){
+        function mainCtrl() {
+            var vm = this;
+
+            vm.mydata = [];
+            vm.mydata2 = [];
+            vm.mydata3 = [];
+            vm.mydata5 = [];
+
+            var seed = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z',
+                    'a','b','c','d','e','f','g','h','i','j','k','m','n','p','q','r','s','t','u','v','w','x','y','z',
+                    '1','2','3','4','5','6','7','8','9','0',
+                    '一','二','三','四','五','六','七','八','九','十'
+            );
+
+            function randomWord() {
+                var createPassword = '', m,n;
+                for(m=0;m<10;m++) {
+                    n = Math.floor(Math.random()*seed.length);
+                    createPassword += seed[n];
+                }
+                return createPassword;
+            }
+
+            for(var i=0;i<100;i++) {
+                var obj = {};
+                obj.id = i;
+                obj.name = randomWord();
+                vm.mydata.push(obj)
+            }
+
+            for(i=0;i<3;i++) {
+                obj = {};
+                obj.id = i;
+                obj.label = randomWord();
+                vm.mydata2.push(obj)
+            }
+            for(i=0;i<10;i++) {
+                obj = {};
+                obj.id = i;
+                obj.label = randomWord();
+                vm.mydata3.push(obj)
+            }
+
+
+            for(i=0;i<10;i++) {
+                obj = {};
+                obj.id = i;
+                obj.name = randomWord();
+                vm.mydata5.push(obj)
+            }
+
+            vm.selected = vm.mydata[16];
+
+            //-------------------------------------------
+            vm.groupData = [
+                { "value":"f20", "text":"Firefox 2.0 or higher", "group":"Firefox" },
+                { "value":"f15", "text":"Firefox 1.5.x", "group":"Firefox" },
+                { "value":"f10", "text":"Firefox 1.0.x", "group":"Firefox" },
+                { "value":"ie7", "text":"IE 7.0 or higher", "group":"Microsoft Internet Explorer" },
+                { "value":"ie6", "text":"IE 6.x", "group":"Microsoft Internet Explorer" },
+                { "value":"ie5", "text":"IE 5.x", "group":"Microsoft Internet Explorer" },
+                { "value":"ie4", "text":"IE 4.x", "group":"Microsoft Internet Explorer" },
+                { "value":"op9", "text":"Opera 9.0 or higher", "group":"Opera" },
+                { "value":"op8", "text":"Opera 8.x", "group":"Opera" },
+                { "value":"op7", "text":"Opera 7.x", "group":"Opera" },
+                { "value":"Safari", "text":"Safari", "group":"Safari" },
+                { "value":"Other", "text":"Other", "group":"Other" }
+            ];
+
+            vm.myEnable = false;
+
+            vm.itemChangeHandler = function (data){
+                console.log(data)
+                vm.selected = data;
+            }
+
+        }
+
+        angular.module('myApp',['ui.wisoft.combobox'])
+                .controller('mainCtrl',mainCtrl);
+    })()
+
+</script>
+
+</body>
+</html>

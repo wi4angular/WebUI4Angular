@@ -1,0 +1,10 @@
+<div ng-controller="ComboBoxDemoNoEditCtrl">
+    <wi-comboBox dataProvider="mydata"
+                 itemChange="itemChangeHandler"
+                 labelField="name"
+                 width="150"
+                 editable="false">
+    </wi-comboBox>
+
+    <p>{{selected | json}}</p>
+</div>

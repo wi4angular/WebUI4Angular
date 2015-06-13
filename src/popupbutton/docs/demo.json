@@ -1,0 +1,7 @@
+{
+    "cname":"popupButton",
+    "discribe":"popupButton（弹出按钮）",
+    "demos":[
+         {"demoDiscribe":"树","html":"popupbutton/docs/popupButton_tree.html","js":"popupbutton/docs/popupButton_tree.js"}
+    ]
+}

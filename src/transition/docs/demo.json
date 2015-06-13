@@ -1,0 +1,7 @@
+{
+    "cname":"transition",
+    "discribe":"transition(变换/动画)",
+    "demos":[
+        {"demoDiscribe":"动画变换样式","html":"transition/docs/demo.html","js":"transition/docs/demo.js"}
+    ]
+}

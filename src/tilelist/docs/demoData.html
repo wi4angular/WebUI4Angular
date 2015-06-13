@@ -1,0 +1,9 @@
+<div ng-controller="tilelistDataCtrl" style="width: 80%; height: 50px;">
+    <wi-tilelist dataProvider="tilelistdata" itemRender="myRender.html">
+        <script type="text/ng-template" id="myRender.html">
+            <div ng-style="{'background-color':data.color,'width': '100%','height': '100%'}">{{data.color}}</div>
+        </script>
+    </wi-tilelist>
+    <button class="wi-btn" ng-click="setData()">修改数据源</button>
+    <button class="wi-btn" ng-click="clearData()">清空数据源</button>
+</div>

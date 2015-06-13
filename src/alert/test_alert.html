@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>test_alert</title>
+
+    <link rel="stylesheet" href="../../themes/blue/theme.css">
+    <link rel="stylesheet" href="../../themes/blue/dialog.css">
+    <link rel="stylesheet" href="../../themes/blue/alert.css">
+
+    <script src="../../lib/angular.js"></script>
+    <script src="../dialog/dialog.js"></script>
+    <script src="../position/position.js"></script>
+    <script src="alert.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body ng-controller="mainCtrl">
+
+<a href="" ng-click="info()">testAlert----info</a><br />
+<a href="" ng-click="warn()">testAlert----warn</a><br />
+<a href="" ng-click="error()">testAlert----error</a><br />
+<a href="" ng-click="success()">testAlert----success</a><br />
+<a href="" ng-click="confirm()">testAlert----confirm</a><br /><br /><br />
+
+
+<script>
+    angular.module('myapp',['ui.wisoft.alert']).controller('mainCtrl',mainCtrl);
+    function mainCtrl($scope,$rootScope,wiAlert){
+        $scope.info=function(){
+            wiAlert.info('试测试测试测测试测测试')
+                    .yes(function(){
+                        console.log('info Alert点击了确定按钮!');
+                    })
+        }
+
+
+        $scope.warn=function(){
+            wiAlert.warn('试测试测试测测试测测试'
+            );
+        }
+        $scope.error=function(){
+            wiAlert.error('试测试测试测测试测测试'
+            );
+        }
+        $scope.success=function(){
+            wiAlert.success('成功删除数据！');
+        }
+
+        //confrim的不同在于confirm需要知道点击了确定还是取消，其余的alert不需要任何返回事件
+        $scope.confirm=function(){
+            wiAlert.confirm({
+                title:'<span style="color: blue;font-weight: bold">删除记录</span>',
+                yesLabel:'是',
+                noLabel:'否',
+                width:500,
+                content:'确定要删除 <span style="color: #ff0000">胡埭社区</span> 吗？测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试'
+            }).yes(function(){
+                console.log('点击了yes按钮');
+            }).no(function(){
+                console.log('点击了NO按钮');
+            })
+        }
+
+    }
+</script>
+</body>
+</html>

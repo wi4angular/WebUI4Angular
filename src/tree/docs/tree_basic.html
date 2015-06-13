@@ -1,0 +1,13 @@
+<div ng-controller="TreeDemoBasicCtrl as bc">
+    <wi-tree dataProvider="bc.simpleData"
+             idField="id"
+             pidField="parentid"
+             labelField="name"
+             itemClick="bc.itemClickHandler"
+             orderBy="id"
+             id="bc.mytree"
+            >
+    </wi-tree>
+    <hr/>
+    itemClick: {{bc.selectedItem}}
+</div>

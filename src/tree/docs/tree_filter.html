@@ -1,0 +1,14 @@
+<div ng-controller="TreeDemoFilterCtrl as bc">
+
+    请输入关键字：<input type="text" ng-model="bc.keyword"/>
+    <hr/>
+
+    <wi-tree dataProvider="bc.simpleData"
+             idField="id"
+             pidField="parentid"
+             labelField="name"
+             orderBy="id"
+             filterBy="bc.keyword"
+            >
+    </wi-tree>
+</div>

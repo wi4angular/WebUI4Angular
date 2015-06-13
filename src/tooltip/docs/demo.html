@@ -1,0 +1,31 @@
+
+<div ng-controller="tooltipCtrl">
+    <p>
+        1 在<a href="#" tooltip="{{dynamicTooltip}}">此处</a>停留，显示文本框中的内容。
+        <input type="text" ng-model="dynamicTooltip">
+    </p>
+    <p>
+        2 【弹出方向】
+        <a href="#" tooltip="上方">上方显示</a>&nbsp;&nbsp;
+        <a href="#" tooltip-placement="bottom" tooltip="下方">下方显示</a>&nbsp;&nbsp;
+        <a href="#" tooltip-placement="left" tooltip="左侧">左侧显示</a>&nbsp;&nbsp;
+        <a href="#" tooltip-placement="right" tooltip="右侧">右侧显示</a>
+    </p>
+    <p>
+        3 在<a href="#" tooltip-popup-delay='1000' tooltip='延迟显示'>此处</a>停留，1s 后显示。
+    </p>
+    <p>
+        4 【触发方式】在<a href="#" tooltip-trigger='click' tooltip='触发方式为 click'>此处</a>单击，显示/隐藏。
+    </p>
+    <p>
+        5 在<a href="#" tooltip-animation='false' tooltip='禁用动画'>此处</a>停留，直接显示，无淡入淡出效果。
+    </p>
+    <p>
+        6 在<a href="#" tooltip-append-to-body='true' tooltip='添加到body'>此处</a>停留，提示直接加在顶层窗口 body 节点。
+    </p>
+    <p>
+        7 在<a href="#" tooltip-html-unsafe="{{htmlTooltip}}">此处</a>停留，显示自定义内容。
+    </p>
+</div>
+
+

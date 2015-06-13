@@ -1,0 +1,24 @@
+<div ng-controller="PopupButtonDemoTreeCtrl as mc">
+    <wi-popupButton label="click me!" isOpen="mc.isopen" width="150">
+        <div>
+            <wi-tree dataProvider="mc.simpleData"
+                     idField="id"
+                     pidField="parentid"
+                     labelField="name"
+                     multiSelect="true"
+                     itemClick="mc.itemClickHandler"
+                     filterBy="mc.keyword"
+                     orderBy="id"
+                     itemOpen="mc.itemOpenHandler"
+                     id="mc.mytree"
+                    >
+            </wi-tree>
+            <hr/>
+            <input type="button" class="wi-btn" value="确定" ng-click="mc.clickHandler()" style="width: 50px;"/>
+        </div>
+    </wi-popupButton>
+
+    <div ng-repeat="select in mc.selectedItem | filter:{type:'person'}">
+        {{select.name}}
+    </div>
+</div>

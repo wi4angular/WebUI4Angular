@@ -1,0 +1,14 @@
+{
+    "cname":"panel",
+    "discribe":"panel",
+    "demos":[
+        {"demoDiscribe":"常用","html":"panel/docs/demo.html","js":"panel/docs/demo.js"},
+        {"demoDiscribe":"指定尺寸","html":"panel/docs/demo_size.html","js":"panel/docs/demo.js"},
+        {"demoDiscribe":"标题栏","html":"panel/docs/demo_heading.html","js":"panel/docs/demo.js"},
+        {"demoDiscribe":"工具栏","html":"panel/docs/demo_tools.html","js":"panel/docs/demo_tools.js"},
+        {"demoDiscribe":"折叠展开","html":"panel/docs/demo_coll.html","js":"panel/docs/demo.js"},
+        {"demoDiscribe":"打开/关闭","html":"panel/docs/demo_open.html","js":"panel/docs/demo.js"},
+        {"demoDiscribe":"事件监听","html":"panel/docs/demo_listener.html","js":"panel/docs/demo_listener.js"},
+        {"demoDiscribe":"wiid调用方法","html":"panel/docs/demo_method.html","js":"panel/docs/demo_method.js"}
+    ]
+}

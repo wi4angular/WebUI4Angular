@@ -1,0 +1,7 @@
+{
+    "cname":"collapse",
+    "discribe":"collapse(折叠)",
+    "demos":[
+        {"demoDiscribe":"collapse","html":"collapse/docs/demo.html","js":"collapse/docs/demo.js"}
+    ]
+}

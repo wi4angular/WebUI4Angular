@@ -1,0 +1,13 @@
+<div ng-controller="MenuDemoCtrl0 as mc">
+    <p>
+        设置 adaptable = "true"<br />
+        设置优先弹出方向为 position = "bottom-left"，当空间不足时将重新调整弹出方向，或进行分栏处理<br />
+    </p>
+    <div>
+        <wi-menu adaptable="true"
+                 position="bottom-left"
+                 dataprovider="mc.data">
+            <input type="button" class="wi-btn" value="自适应方向菜单" />
+        </wi-menu>
+    </div>
+</div>

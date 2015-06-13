@@ -1,0 +1,20 @@
+{
+    "cname":"my97datepicker",
+    "discribe":"my97datepicker（日期选择）",
+    "demos":[
+          {"demoDiscribe":"基本","html":"my97datepicker/docs/datepicker_basic.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"周显示","html":"my97datepicker/docs/datepicker_showWeek.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"不可编辑","html":"my97datepicker/docs/datepicker_editable.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"高亮周末","html":"my97datepicker/docs/datepicker_highlight.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"隐藏按钮","html":"my97datepicker/docs/datepicker_hideButtons.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"自定义星期的第一天","html":"my97datepicker/docs/datepicker_firstDay.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"起始日期","html":"my97datepicker/docs/datepicker_startDate.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"自定义格式","html":"my97datepicker/docs/datepicker_format.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"取得系统可识别的日期值","html":"my97datepicker/docs/datepicker_realDate.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"范围限制","html":"my97datepicker/docs/datepicker_range.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"无效天","html":"my97datepicker/docs/datepicker_disable.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"事件处理","html":"my97datepicker/docs/datepicker_event.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"禁用快速选择","html":"my97datepicker/docs/datepicker_qsEnable.html","js":"my97datepicker/docs/datepicker_basic.js"}
+         ,{"demoDiscribe":"快速选择数据","html":"my97datepicker/docs/datepicker_quickSel.html","js":"my97datepicker/docs/datepicker_basic.js"}
+    ]
+}

@@ -1,0 +1,48 @@
+<div ng-controller="tabsetMainCtrl1">
+    <p>
+        <button class="wi-btn" ng-click="items[0].regular = !items[0].regular">切换</button>
+        点击“切换”将第一个标签切换为固定（非固定）标签，固定标签将不可关闭。
+    </p>
+    <p>
+        点击标签页右侧的“×”可以关闭标签。<br />
+        enablerightmenu="true" 开启了右键菜单，可以右击选择关闭其他或全部（非固定的）标签。
+    </p>
+    <p>
+        <button class="wi-btn" ng-click="addTabAndOpen()">添加</button>
+        点击“添加”在最后新增一个标签页，并选中该标签页。当标签数超过可显示范围时，将出现左右箭头。
+    </p>
+    <p>
+        <button class="wi-btn" ng-click="selectTab()">选中第一个</button>
+    </p>
+    <p>
+        select: 选中时的回调方法，参数为此选中 tab 对应的 scope。<br />
+        deselect: 取消选中时的回调方法，参数为此选中 tab 对应的 scope。<br />
+        close: 关闭时的回调方法，参数为此选中 tab 对应的 wiid。<br />
+    </p>
+    <wi-tabset enablerightmenu="true"
+               select="selectFun"
+               deselect="deselectFun"
+               close="closeFun">
+        <wi-tab ng-repeat="item in items"
+                wiid="{{item.id}}"
+                icon="{{item.icon}}"
+                heading="{{item.title}}"
+                regular="item.regular"
+                active="item.active"
+                src="{{item.src}}">
+            {{item.content}}
+        </wi-tab>
+    </wi-tabset>
+    <!--
+    【wi-tab】
+    wiid: id
+    icon: tab 中图标的 url
+    heading: tab 中的文字
+    regular: 是否是固定标签 - 若 wi-tabset 中将 closeable 设为 false，此项失效
+    disabled: 是否启用 - 若 wi-tabset 中未将 closeable 设为 false，此项失效
+    active: 是否是选中项，初始化时会选中最后一个设为 true 的标签页
+    src: 内容部分的 url
+    select: 标签选中回调
+    deselect: 标签取消选中的回调
+    -->
+</div>

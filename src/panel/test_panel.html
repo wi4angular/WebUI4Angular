@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft" style="height: 100%;">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>panel</title>
+    <link rel="stylesheet" href="../../themes/blue/theme.css"/>
+    <link rel="stylesheet" href="../../themes/blue/collapse.css">
+    <link rel="stylesheet" href="../../themes/blue/panel.css">
+</head>
+<body ng-cloak  ng-controller="mainCtrl as mc">
+<button ng-click="myClick()">click</button>
+<div style="height: 200px; background: red;">
+    <wi-panel heading="PANEL TEST ONE"
+              head-icon="../../misc/tempimg/panel/icon.gif"
+              head-tools="headtools"
+              collapsible
+              collapsed
+              center
+              height="100%"
+              is-open="mc.open1"
+              onopened="opened"
+              onclosed="closed"
+              oncollapse="col"
+              onexpand="exp"
+              wiid="mypanel"
+            >
+        <p>The body of the panel group grows to fit the contents</p>
+        <button class="wi-btn">Add Item</button>
+    </wi-panel>
+</div>
+<br />
+<hr />
+<br />
+<!--<wi-panel is-open="mc.open2">
+    <wi-panel-heading>
+        PANEL TEST TWO<img src="../../misc/tempimg/panel/icon.gif" ng-click="click($event)" style="vertical-align: middle;" />
+    </wi-panel-heading>
+    This is just some content to illustrate fancy headings.
+</wi-panel>-->
+
+<script src="../../lib/angular-1.3.6/angular.js"></script>
+<script src="../transition/transition.js" ></script>
+<script src="../collapse/collapse.js" ></script>
+<script src="panel.js"></script>
+<script>
+    angular.module('ui.wisoft', ['ui.wisoft.panel']).
+            controller('mainCtrl', ['$scope', function ($scope) {
+                var ctrl = this;
+                ctrl.open1 = true;
+                ctrl.open2 = true;
+                var saveFun=function(e){
+                    console.log('save');
+                    e.stopPropagation();
+                };
+                var checkFun=function(e){
+                    console.log("check");
+                    e.stopPropagation();
+                };
+
+                $scope.headtools = ['collapse','close',
+                    {name:'save',cls:'icon-save',opt:saveFun},
+                    {name:'del',cls:'icon-check',opt:checkFun}
+                ];
+                var i=0;
+                $scope.click = function(e){
+                    angular.element(e.target).css('marginLeft',(++i)*10+'px');
+                };
+                $scope.opened = function(){
+//                    console.log('opened');
+                };
+                $scope.closed = function(){
+//                    console.log('closed');
+                };
+                $scope.col = function(){
+//                    console.log('col');
+                };
+                $scope.exp = function(){
+//                    console.log('exp');
+                };
+                $scope.myClick = function(){
+//                    console.log($scope.mypanel.options());
+//                    console.log($scope.mypanel.element());
+//                    $scope.mypanel.toggle()
+                }
+            }]);
+</script>
+</body>
+</html>

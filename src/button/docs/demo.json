@@ -1,0 +1,7 @@
+{
+    "cname":"button",
+    "discribe":"button(按钮)",
+    "demos":[
+        {"demoDiscribe":"常用","html":"button/docs/demo.html","js":"button/docs/demo.js"}
+    ]
+}

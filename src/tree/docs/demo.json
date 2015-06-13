@@ -1,0 +1,12 @@
+{
+    "cname":"tree",
+    "discribe":"Tree(树)",
+    "demos":[
+        {"demoDiscribe":"基本","html":"tree/docs/tree_basic.html","js":"tree/docs/tree_basic.js"}
+        ,{"demoDiscribe":"多选","html":"tree/docs/tree_multiSelect.html","js":"tree/docs/tree_multiSelect.js"}
+        ,{"demoDiscribe":"延迟加载","html":"tree/docs/tree_lazyLoad.html","js":"tree/docs/tree_lazyLoad.js"}
+        ,{"demoDiscribe":"过滤节点","html":"tree/docs/tree_filter.html","js":"tree/docs/tree_filter.js"}
+        ,{"demoDiscribe":"自定义节点操作","html":"tree/docs/tree_customOperate.html","js":"tree/docs/tree_customOperate.js"}
+        ,{"demoDiscribe":"自定义图标","html":"tree/docs/tree_customIcon.html","js":"tree/docs/tree_customIcon.js"}
+    ]
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="example">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../themes/default/theme.css">
+    <link rel="stylesheet" href="../../themes/default/dialog.css">
+</head>
+<body  ng-controller="main">
+<a href="" ng-click="openDefaultByUrl()">在iframe父窗口弹出dialog(默认)</a><br>
+<a href="" ng-click="openIframeWindow()">打开带iframe的dialog（需要指定iframe的宽高）</a><br>
+<a href="" ng-click="openInfo()">在iframe窗口内dialog</a>
+
+<script type="text/ng-template" id="withIframeDialog">
+    <div style="padding: 0;overflow: hidden;overflow: hidden">
+        {{wiDialogData}}
+        <iframe id="frame_content" name="frame_content" ng-src="withIframeWindow.html" height="500px" width="100%"  style="padding: 0;overflow: hidden;border: none;" >
+        </iframe>
+    </div>
+</script>
+
+    <script src="../../lib/angular.js"></script>
+    <script src="../position/position.js"></script>
+     <script src="dialog.js"></script>
+    <script>
+        var app = angular.module('example', ['ui.wisoft.dialog']);
+        function main($scope,wiDialog){
+            var dialogcontent = document.getElementById('dialogcontent');
+            var content=angular.element(dialogcontent);
+
+            //iframe中的窗口，默认在父级容器中弹出
+            $scope.openDefaultByUrl = function () {
+                wiDialog.open({
+                    template: 'template.html',
+                    controller: 'InsideCtrl',
+                    className: 'wi-dialog-theme-default',
+                    closeByEscape:false,
+                    title:'在iframe父窗口弹出dialog',
+                    width:700
+                });
+            };
+            // dialogInIframe:true
+            $scope.openInfo = function () {
+                wiDialog.open({
+                    plain:true,
+                    template:'<div style="color: red;height: 60px;padding: 10px;">简单弹出框</div>',
+                    title:'dialog',
+                    width:280,
+                    dialogInIframe:true
+                });
+            };
+
+            $scope.openIframeWindow = function () {
+                var user = {"usernam":"user001","age":32};
+                var dialog=wiDialog.open({
+                    template: 'withIframeDialog',
+                    controller: 'InsideCtrl',
+                    closeByEscape:true,
+                    title:'带Iframe的弹出窗',
+                    width:500,
+                    data:user
+                });
+                window.dataForIframe=function(){
+                    return {'username':'user001','age':'32'};
+                }
+                dialog.closePromise.then(function (data) {
+                    console.log('iframea窗口关闭');
+                });
+            };
+        }
+
+        app.controller('InsideCtrl', function ($scope, wiDialog) {
+            $scope.dialogModel = {
+                message : 'message from passed scope::::iframe'
+            };
+            $scope.wiDialogData={"username":"user9527"};
+            $scope.openSecond = function () {
+                wiDialog.open({
+                    template: '<h3><a href="" ng-click="closeSecond()">Close all by click here!</a></h3>',
+                    plain: true,
+                    closeByEscape: false,
+                    controller: 'SecondModalCtrl'
+                });
+            };
+        });
+        app.controller('SecondModalCtrl', function ($scope, wiDialog) {
+            $scope.closeSecond = function () {
+                wiDialog.closeAll();
+            };
+        });
+    </script>
+</body>
+</html>

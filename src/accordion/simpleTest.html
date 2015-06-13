@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="myApp" style="height: 100%;">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../themes/default/theme.css">
+    <link rel="stylesheet" href="../../themes/default/accordion.css">
+    <link rel="stylesheet" href="../../themes/default/collapse.css">
+    <script src="../../lib/angular-1.3.6/angular.js" ></script>
+    <script src="../transition/transition.js" ></script>
+    <script src="../collapse/collapse.js" ></script>
+    <script src="../resizelistener/resizelistener.js"></script>
+    <script src="accordion.js" ></script>
+</head>
+<body ng-controller="AccordionDemoCtrl" style="height: 100%;">
+<p>
+    <button class="btn btn-default btn-sm" ng-click="status.isFirstOpen = !status.isFirstOpen">Toggle last panel</button>
+    <!--<button class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>-->
+</p>
+<div style="width: 451px; height:80%;border: solid 1px #ccc;">
+    <wi-accordion width="300" height="100%" onSelect="onSelect" onUnselect="onUnselect">
+        <wi-accordion-group heading="Static Header, initially expanded"  is-disabled="status.isFirstDisabled" is-open="true">
+            <div>
+                This content is straight in the template.
+            </div>
+        </wi-accordion-group>
+        <wi-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+            {{group.content}}
+        </wi-accordion-group>
+        <wi-accordion-group heading="Dynamic Body Content">
+            <p>The body of the accordion group grows to fit the contents</p>
+            <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+            <div ng-repeat="item in items">{{item}}</div>
+        </wi-accordion-group>
+        <wi-accordion-group is-open="status.isFirstOpen">
+            <wi-accordion-heading>
+                <span style="float: right; line-height: inherit;" ng-class="{'icon-chevron-down': status.isFirstOpen, 'icon-chevron-right': !status.isFirstOpen}"></span>I can have markup, too!
+            </wi-accordion-heading>
+            This is just some content to illustrate fancy headings.
+        </wi-accordion-group>
+    </wi-accordion>
+<br><br>
+    <!--<wi-accordion width="60%" height="30%">-->
+        <!--<wi-accordion-group heading="111111111111" is-open="status.isFirstOpen">-->
+            <!--111111111111111111111111111111111111-->
+        <!--</wi-accordion-group>-->
+        <!--<wi-accordion-group heading="222222222222" is-open="status1.isFirstOpen">-->
+            <!--<div>-->
+                <!--22222222222222222222222222222222222-->
+            <!--</div>-->
+        <!--</wi-accordion-group>-->
+    <!--</wi-accordion>-->
+    <!--<br><br>-->
+    <!--<wi-accordion height="30%" >-->
+        <!--<wi-accordion-group ng-repeat="group in groups" is-open="group.open" heading="{{group.title}}">{{group.content}}</wi-accordion-group>-->
+    <!--</wi-accordion>-->
+</div>
+
+<script>
+    angular.module('myApp',['ui.wisoft.accordion'])
+            .controller('AccordionDemoCtrl', function($scope) {
+                $scope.oneAtATime = true;
+
+                $scope.groups = [
+                    {
+                        title: 'Dynamic Group Header - 1',
+                        content: 'Dynamic Group Body - 1',
+                        open:true
+                    },
+                    {
+                        title: 'Dynamic Group Header - 2',
+                        content: 'Dynamic Group Body - 2',
+                        open:true
+                    },
+                    {
+                        title: 'Dynamic Group Header - 3',
+                        content: 'Dynamic Group Body - 3---Dynamic Group Body - 3--Dynamic Group Body - 3---Dynamic Group Body - 3',
+                        open:false
+                    }
+                ];
+
+                $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+                $scope.addItem = function() {
+                    var newItemNo = $scope.items.length + 1;
+                    $scope.items.push('Item ' + newItemNo);
+                };
+
+                $scope.status = {
+                    isFirstOpen: false,
+                    isFirstDisabled: false
+                };
+                $scope.status1 = {
+                    isFirstOpen: true,
+                    isFirstDisabled: false
+                };
+            });
+</script>
+</body>
+</html>

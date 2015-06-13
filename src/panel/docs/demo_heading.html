@@ -1,0 +1,19 @@
+<div ng-controller="PanelDemoCtrl as pc">
+    <wi-panel heading="PANEL TEST ONE"
+              head-icon="misc/tempimg/panel/icon.gif"
+              head-tools="'collapse,close'"
+              is-open="isopen">
+        <p>heading 头部文字</p>
+        <p>head-tools 可选项：collapse, close</p>
+        <p>head-icon 头部图片路径</p>
+        <p>center 头部居中</p>
+    </wi-panel>
+    <br />
+    <br />
+    <wi-panel is-open="isopen1" center>
+        <wi-panel-heading>
+            PANEL TEST TWO <img src="misc/tempimg/panel/icon.gif" style="vertical-align: middle;" />
+        </wi-panel-heading>
+        <p>wi-panel-heading 通过此标签自定义头部，heading 及 head-icon 将失效</p>
+    </wi-panel>
+</div>

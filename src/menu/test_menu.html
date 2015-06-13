@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft" style="height: 100%;">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+    <link rel="stylesheet" href="../../themes/default/menu.css"/>
+</head>
+<body ng-cloak style="width:900px; height: 100%;">
+<div style="width: 90%; height: 300px; background: greenyellow;" ng-controller="mainCtrl as mc">
+    <div style="position:relative; display: inline-block; left: 50px; top: 100px;">
+        <wi-menu adaptable="true"
+                 position="bottom-left"
+                 filterable="false"
+                 dataprovider="mc.data0"
+                 onselect="vm.selectFn">
+            <input id="qq" type="button" class="btn" value="按钮1" />
+        </wi-menu>
+    </div>
+    <!--<div style="position:relative; display: inline-block; left: 50px; top: 100px;">
+        <wi-menu adaptable="true"
+                 position="bottom-left"
+                 filterable="false"
+                 dataprovider="mc.data2">
+            <input type="button" class="btn" value="按钮1" />
+        </wi-menu>
+    </div>
+
+    <div style="width: 200px; height: 200px; background: #ff0; float: left;">
+        <wi-menu wi-right-menu dataprovider="mc.data0" onSelect="vm.selectFn"></wi-menu>
+    </div>
+    <div style="width: 200px; height: 200px; background: #f00; float: left;">
+        <wi-menu wi-right-menu dataprovider="mc.data2"></wi-menu>
+    </div>-->
+</div>
+
+<script src="../../lib/angular-1.3.6/angular.js"></script>
+<script src="../position/position.js"></script>
+<script src="../popup/popup.js"></script>
+<script src="menu.js"></script>
+<script>
+    angular.module('ui.wisoft', ['ui.wisoft.menu']).
+            controller('mainCtrl', ['$scope', function ($scope){
+                $scope.vm = {
+                    selectFn: function(f){
+                        console.log(f);
+                    }
+                };
+
+                var ctrl = this;
+                ctrl.data0 = [
+                    {id:'0',label:'g1-node0', icon:'../../misc/tempimg/menu/save.gif', event:'alert(1)'},
+                    {id:'1',label:'g1-node1',filterable: true, children:[
+                        {id:'7',label:'g0-node7'}
+                    ]},
+                    {id:'8',label:'g0-menu8'},
+                    {id:'9',label:'g0-menu9'}
+                ];
+                ctrl.data2 = [
+                    {id:'0',label:'g1-menu0', icon:'../../misc/tempimg/menu/save.gif', event:'alert(1)'},
+                    {id:'1',label:'g1-menu1', children:[
+                        {id:'7',label:'g0-menu7'}
+                    ]},
+                    {id:'2',label:'g2-menu2', children:[
+                        {id:'5',label:'g0-menu5'},
+                        {id:'6',label:'g1-menu6', children:[
+                            {id:'3',label:'g0-menu3', enabled:false},
+                            {id:'4',label:'g0-menu4'}
+                        ]},
+                        {id:'8',label:'g0-menu8'},
+                        {id:'9',label:'g0-menu9'},
+                        {id:'8',label:'g0-menu8'},
+                        {id:'9',label:'g0-menu9'},
+                        {id:'8',label:'g0-menu8'},
+                        {id:'9',label:'g0-menu9'},
+                        {id:'8',label:'g0-menu8'},
+                        {id:'9',label:'g0-menu9'},
+                        {id:'8',label:'g0-menu8'},
+                        {id:'9',label:'g0-menu9'},
+                        {id:'8',label:'g0-menu8'},
+                        {id:'9',label:'g0-menu9'},
+                        {id:'8',label:'g0-menu8'},
+                        {id:'9',label:'g0-menu9'}
+                    ]}
+                ];
+
+                angular.element(document).on('click',function(){
+                    console.log(1);
+                    $scope.$apply(function(){
+                        ctrl.data0 = [
+                            {id:'0',label:'g1-menu0', icon:'../../misc/tempimg/menu/save.gif', event:'alert(1)'}
+                        ];
+                    });
+                });
+            }]);
+</script>
+</body>
+</html>

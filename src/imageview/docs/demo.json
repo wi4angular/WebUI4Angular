@@ -1,0 +1,8 @@
+{
+   "cname":"imageview",
+   "discribe":"imageview(图片查看)",
+   "demos":[
+       {"demoDiscribe":"URL数据源","html":"imageview/docs/demo1.html","js":"imageview/docs/demo1.js"},
+       {"demoDiscribe":"ImageData数据源","html":"imageview/docs/demo2.html","js":"imageview/docs/demo2.js"}
+   ]
+}

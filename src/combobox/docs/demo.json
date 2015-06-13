@@ -1,0 +1,12 @@
+{
+    "cname":"comboBox",
+    "discribe":"comboBox（下拉框）",
+    "demos":[
+         {"demoDiscribe":"基本","html":"combobox/docs/comboBox_basic.html","js":"combobox/docs/comboBox_basic.js"}
+        ,{"demoDiscribe":"不可编辑","html":"combobox/docs/comboBox_noEdit.html","js":"combobox/docs/comboBox_noEdit.js"}
+        ,{"demoDiscribe":"显示行数","html":"combobox/docs/comboBox_rowCount.html","js":"combobox/docs/comboBox_rowCount.js"}
+        ,{"demoDiscribe":"分组","html":"combobox/docs/comboBox_group.html","js":"combobox/docs/comboBox_group.js"}
+        ,{"demoDiscribe":"不可用","html":"combobox/docs/comboBox_enable.html","js":"combobox/docs/comboBox_enable.js"}
+        ,{"demoDiscribe":"多选","html":"combobox/docs/comboBox_multi.html","js":"combobox/docs/comboBox_multi.js"}
+    ]
+}

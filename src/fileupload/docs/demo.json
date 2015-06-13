@@ -1,0 +1,12 @@
+{
+    "cname":"fileupload",
+    "discribe":"fileupload(文件上传)",
+    "demos":[
+        {"demoDiscribe":"基本用法","html":"fileupload/docs/demo_basic.html","js":"fileupload/docs/demo.js"},
+        {"demoDiscribe":"多选","html":"fileupload/docs/demo_multisel.html","js":"fileupload/docs/demo.js"},
+        {"demoDiscribe":"过滤（类型、文件大小）","html":"fileupload/docs/demo_filter.html","js":"fileupload/docs/demo.js"},
+        {"demoDiscribe":"模态显示状态","html":"fileupload/docs/demo_modal.html","js":"fileupload/docs/demo.js"},
+        {"demoDiscribe":"返回数据","html":"fileupload/docs/demo_response.html","js":"fileupload/docs/demo_response.js"},
+        {"demoDiscribe":"取消上传","html":"fileupload/docs/demo_remove.html","js":"fileupload/docs/demo_remove.js"}
+    ]
+}

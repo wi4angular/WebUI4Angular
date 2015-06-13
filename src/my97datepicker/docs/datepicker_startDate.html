@@ -1,0 +1,8 @@
+<div ng-controller="DatepickerDemoBasicCtrl">
+    当日期框为空值时,将使用 2000-10-12 做为起始日期<br/>
+    <wi-datepicker ng-model="date1" startDate="2000-10-12"></wi-datepicker><br/>
+    无论日期框是否为空,都将使用 2000-10-12 做为起始日期<br/>
+    <wi-datepicker ng-model="date2" startDate="2000-10-12" alwaysUseStartDate="true"></wi-datepicker><br/>
+    动态参数(如:%y,%M分别表示当前年和月)。起始日期为当前当月1日<br/>
+    <wi-datepicker ng-model="date3" startDate="%y-%M-01" alwaysUseStartDate="true"></wi-datepicker><br/>
+</div>

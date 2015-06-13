@@ -1,0 +1,21 @@
+<div ng-controller="DatepickerDemoBasicCtrl">
+    限制日期的范围是 2006-09-10到2008-12-20<br/>
+    <wi-datepicker ng-model="date1" minDate="2006-09-10" maxDate="2008-12-20"></wi-datepicker><br/>
+
+    限制时间的范围是 8:00:00 到 11:30:00<br/>
+    <wi-datepicker ng-model="date2" dateFmt="H:mm:ss" minDate="8:00:00" maxDate="11:30:00"></wi-datepicker><br/>
+
+    动态限制,你可以通过系统给出的动态变量,如%y(当前年),%M(当前月)等来限度日期范围,你还可以通过{}进行表达式运算,如:{%d+1}:表示明天<br/>
+    1)只能选择今天以前的日期(包括今天)<br/>
+    <wi-datepicker ng-model="date3" maxDate="%y-%M-%d"></wi-datepicker><br/>
+
+    2)只能选择今天以后的日期(不包括今天)<br/>
+    <wi-datepicker ng-model="date4" minDate="%y-%M-{%d+1}"></wi-datepicker><br/>
+
+    3)只能选择本月<br/>
+    <wi-datepicker ng-model="date5" minDate="%y-%M-01" maxDate="%y-%M-%ld"></wi-datepicker><br/>
+
+    4)前面的日期不能大于后面的日期 且 两个日期都不能大于今天<br/>
+    <wi-datepicker ng-model="date6" id="d1" maxDate="#F{$dp.$D(\'d2\')||\'%y-%M-%d\'}"></wi-datepicker>
+    ~<wi-datepicker ng-model="date7" id="d2" minDate="#F{$dp.$D(\'d1\')}" maxDate="%y-%M-%d"></wi-datepicker><br/>
+</div>

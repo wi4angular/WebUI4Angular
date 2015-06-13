@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft">
+<head lang="en">
+    <link rel="stylesheet" href="../../themes/default/theme.css" />
+    <link rel="stylesheet" href="../../themes/default/carousel.css" />
+    <script src="../../lib/angular.js" ></script>
+    <!--<script src="../../build/WebUI4Angular-tpls-all.js" ></script>-->
+    <script src="../transition/transition.js" ></script>
+    <script src="carousel.js" ></script>
+    <style type="text/css">
+        .carousel-caption {
+            position: absolute;
+            right: 15%;
+            bottom: 20px;
+            left: 15%;
+            z-index: 10;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+        }
+        .carousel-caption {
+            right: 20%;
+            left: 20%;
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="CarouselDemoCtrl">
+    <input type="button" ng-click="doapply()" class="wi-btn" value="test$apply" />
+    <input type="button" ng-click="doevalAsync()" class="wi-btn" value="test$evalAsync" /><br />
+    <div>
+        <div style="height: 300px;width: 500px;margin: 20px;">
+            <wi-carousel interval="myInterval">
+                <wi-slide ng-repeat="slide in slides" active="slide.active">
+                    <img ng-src="{{slide.image}}" style="margin:auto;">
+                    <div class="carousel-caption">
+                        <h4>Slide {{$index}}</h4>
+                        <p>{{slide.text}}</p>
+                    </div>
+                </wi-slide>
+            </wi-carousel>
+        </div>
+        <div>
+            <div>
+                <button type="button" class="wi-btn" ng-click="addSlide()">Add Slide</button>
+            </div>
+            <div>
+                Interval, in milliseconds: <input type="number" ng-model="myInterval">
+                <br />Enter a negative number to stop the interval.
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    angular.module("ui.wisoft",["ui.wisoft.carousel"]);
+    function CarouselDemoCtrl($scope) {
+        $scope.myInterval = 2000;
+        var slides = $scope.slides = [];
+        $scope.addSlide = function() {
+            var index = 1 + slides.length%5;
+            slides.push({
+                image: '../../misc/tempimg/carousel/carousel' + index + '.jpg',
+                text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+                        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+            });
+        };
+        for (var i=0; i<4; i++) {
+            $scope.addSlide();
+        }
+
+        $scope.doapply=function(){
+            $scope.$apply(function(){
+                console.log('看不到我.......');
+            });
+        }
+        $scope.doevalAsync=function(){
+            $scope.$evalAsync(function(){
+                console.log('after ng-click:::::::我被执行了.......');
+            });
+        }
+    }
+</script>
+</body>
+</html>

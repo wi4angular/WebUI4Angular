@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html ng-app="myApp" style="height: 100%">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>tree</title>
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+    <link rel="stylesheet" href="../../themes/default/tree.css"/>
+</head>
+<body ng-controller="mainCtrl" ng-cloak style="height: 100%">
+
+<div style="width: 100%;margin: 0 auto;padding-top: 5px;height:100%;">
+
+    <input type="text" ng-model="vm.keyword"/>
+    <br/>
+    <br/>
+    <hr/>
+
+    <wi-tree dataProvider="vm.simpleData"
+             idField="id"
+             pidField="parentid"
+             labelField="name"
+             multiSelect="true"
+             itemClick="vm.itemClickHandler"
+             itemRenderer="myRenderer.html"
+             filterBy="vm.keyword"
+             orderBy="id"
+             itemOpen="vm.itemOpenHandler"
+             id="vm.mytree"
+             >
+        <script type="text/ng-template" id="myRenderer.html">
+            <span>
+                <span ng-if="data['children']">({{data['children'].length}})</span>
+                <a href="#" ng-click="$emit('addNode',data)">增</a>
+                <a href="#" ng-click="$emit('delNode',data)">删</a>
+                <a href="#" ng-click="$emit('updateNode',data)">改</a>
+            </span>
+        </script>
+    </wi-tree>
+    <hr/>
+    itemClick: {{vm.selectedItem}}
+</div>
+
+<script src="../../lib/angular.js"></script>
+<script src="tree.js"></script>
+
+<script>
+    function mainCtrl($scope) {
+        var vm = $scope.vm = {};
+
+        vm.mytree = {};
+
+        vm.simpleData = [
+            {id:'2',name:'node2',parentid:'root'},
+            {id:'1',name:'node1',parentid:'root'},
+            {id:'3',name:'node3',parentid:'root'},
+            {id:'4',name:'node4',parentid:'root',isbranch:'true'},
+            {id:'13',name:'node13',parentid:'1'},
+            {id:'12',name:'node12',parentid:'1'},
+            {id:'11',name:'node11',parentid:'1'},
+            {id:'21',name:'node21',parentid:'2'},
+            {id:'22',name:'node22',parentid:'2'},
+            {id:'23',name:'node23',parentid:'2'},
+            {id:'31',name:'node31',parentid:'3'},
+            {id:'32',name:'node32',parentid:'3'},
+            {id:'33',name:'node33',parentid:'3'},
+            {id:'111',name:'node111',parentid:'11'},
+            {id:'113',name:'node113',parentid:'11'},
+            {id:'112',name:'node112',parentid:'11'},
+            {id:'5',name:'父节点',parentid:'root'},
+            {id:'52',name:'子节点二',parentid:'5'},
+            {id:'51',name:'子节点一',parentid:'5'},
+            {id:'511',name:'孙子节点一',parentid:'51'},
+            {id:'513',name:'孙子节点三',parentid:'51'},
+            {id:'512',name:'孙子节点二',parentid:'51'},
+        ];
+
+        vm.treeData = [
+            {   label: '中国',
+                provinces: [
+                    {
+                        label: '北京',
+                        cities: [
+                            {   label: '朝阳区'    },
+                            {   label: '宣武区'    },
+                            {   label: '海淀区'    }
+                        ]
+                    },
+                    {   label: '河北',
+                        cities: [
+                            {   label: '石家庄'    },
+                            {   label: '承德' },
+                            {   label: '唐山' }
+                        ]
+                    }
+                ]
+            },
+            {   label: '美国',
+                provinces: [
+                    {   label: '纽约',
+                        cities: [
+                            {   label: '曼哈顿区'   },
+                            {   label: '皇后区'    }
+                        ]
+                    },
+                    {   label: '德克萨斯州',
+                        cities: [
+                            {   label: '休斯顿'    },
+                            {   label: '达拉斯'    }
+                        ]
+                    },
+                    {   label: '加利福尼亚州' }
+                ]
+            }
+        ];
+
+        // 后台获取数据
+
+        vm.itemClickHandler = function (data) {
+            vm.selectedItem = data.name;
+        }
+
+        // 节点展开
+        vm.itemOpenHandler = function (data, callback) {
+            setTimeout(function () {
+                var children;
+
+                if(data['id'] === '4') {
+                    children = [
+                        {id:'41',name:'node41',parentid:'4',isbranch:'true'},
+                        {id:'42',name:'node42',parentid:'4'},
+                        {id:'43',name:'node43',parentid:'4'},
+                        {id:'44',name:'node44',parentid:'4'}
+                    ];
+                } else {
+                    children = [
+                        {id:'411',name:'node401',parentid:'41'},
+                        {id:'412',name:'node402',parentid:'41'},
+                        {id:'413',name:'node403',parentid:'41'},
+                        {id:'414',name:'node404',parentid:'41'}
+                    ];
+                }
+
+                callback(data, children);
+            },2000)
+        }
+
+        // 增
+        $scope.$on('addNode', function (event,data) {
+            var id = Math.round(Math.random()*Math.pow(10,5));
+            var obj = {id:id,name:'node'+id,parentid:data['id']};
+            vm.mytree.addNode(data,obj);
+        })
+
+        // 删
+        $scope.$on('delNode', function (event,data) {
+            vm.mytree.deleteNode(data)
+        })
+
+        // 改
+        $scope.$on('updateNode', function (event,data) {
+            data['name'] += '@#$';
+        })
+
+    }
+
+    angular.module('myApp',['ui.wisoft.tree'])
+           .controller('mainCtrl',mainCtrl);
+
+</script>
+
+</body>
+</html>

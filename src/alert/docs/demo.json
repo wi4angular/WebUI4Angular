@@ -1,0 +1,8 @@
+{
+    "cname":"alert",
+    "discribe":"alert(提示框)",
+    "demos":[
+        {"demoDiscribe":"基本用法","html":"alert/docs/demo1.html","js":"alert/docs/demo1.js"},
+        {"demoDiscribe":"自定义属性","html":"alert/docs/demo2.html","js":"alert/docs/demo2.js"}
+    ]
+}

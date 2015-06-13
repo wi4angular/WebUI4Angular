@@ -1,0 +1,7 @@
+{
+    "cname":"carousel",
+    "discribe":"carousel(图片滑动)",
+    "demos":[
+        {"demoDiscribe":"carousel","html":"carousel/docs/demo.html","js":"carousel/docs/demo.js"}
+    ]
+}

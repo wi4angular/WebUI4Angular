@@ -1,0 +1,11 @@
+{
+    "cname":"dividedbox",
+    "discribe":"dividedbox(分屏)",
+    "demos":[
+        {"demoDiscribe":"横向","html":"dividedbox/docs/demo.html","js":"dividedbox/docs/demo.js"},
+        {"demoDiscribe":"纵向","html":"dividedbox/docs/demo0.html","js":"dividedbox/docs/demo.js"},
+        {"demoDiscribe":"标题栏","html":"dividedbox/docs/demo_head.html","js":"dividedbox/docs/demo.js"},
+        {"demoDiscribe":"折叠","html":"dividedbox/docs/demo1.html","js":"dividedbox/docs/demo.js"},
+        {"demoDiscribe":"禁用 resize","html":"dividedbox/docs/demo2.html","js":"dividedbox/docs/demo.js"}
+    ]
+}

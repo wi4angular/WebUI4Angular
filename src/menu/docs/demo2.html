@@ -1,0 +1,12 @@
+<div ng-controller="MenuDemoCtrl2 as mc">
+    <p>【filterable】 第一级菜单是否支持关键字过滤，默认为 false。</p>
+    <p>【数据源】 子菜单支持关键字过滤。filterable: true</p>
+    <div>
+        <wi-menu adaptable="false"
+                 filterable="true"
+                 position="bottom-left"
+                 dataprovider="mc.data">
+            <input type="button" class="wi-btn" value="弹出菜单" />
+        </wi-menu>
+    </div>
+</div>

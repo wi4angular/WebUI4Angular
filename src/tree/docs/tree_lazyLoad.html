@@ -1,0 +1,11 @@
+<div ng-controller="TreeDemoLazyLoadCtrl as lc">
+    <wi-tree dataProvider="lc.simpleData"
+             idField="id"
+             pidField="parentid"
+             labelField="name"
+             itemOpen="lc.itemOpenHandler"
+             orderBy="id"
+             id="lc.mytree"
+            >
+    </wi-tree>
+</div>

@@ -1,0 +1,15 @@
+<style>
+    .alertContent{
+        color: #ff0000;
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .alertTitle{
+        color:blue;
+        font-weight: bold;
+    }
+</style>
+<div ng-controller="alertCtrl2">
+    <!--这里仅以confirm举例,info、warn、error、success类似，只是缺少noLabel属性和no方法 -->
+    <input type="button" value="自定义属性" ng-click="confirm()" /><br>
+</div>

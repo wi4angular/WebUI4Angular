@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myApp" style="height: 100%">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>fileupload</title>
+    <link rel="stylesheet" href="../../themes/blue/wi-all.css"/>
+</head>
+<body ng-controller="mainCtrl" ng-cloak style="height: 100%">
+<div style="border: solid 1px #000;">
+    <wi-fileUpload
+        removeFun="removef"
+        wi-url="temp/upload.html"
+        wi-trigger="file1"
+        wi-max-size="4m"
+        wi-multisel
+        wi-modal
+        wi-response="responseText"
+        wi-mime-types="[{ title: 'music', extensions: 'mp3,mp4' },{ title: 'text', extensions: 'txt' }]"
+        wi-swf="temp/Moxie.swf"></wi-fileUpload>
+</div>
+<div style="position: relative; top: 20px; left: 100px; width: 600px; background: pink;">
+    <input type="button" class="wi-btn" id="file1" value="选择文件" />
+</div>
+
+<script src="../../lib/angular-1.3.6/angular.js"></script>
+<script src="../dialog/dialog.js"></script>
+<script src="../position/position.js"></script>
+<script src="../bindHtml/bindHtml.js"></script>
+<script src="../progress/progress.js"></script>
+<script src="fileupload.js"></script>
+
+<script>
+    function mainCtrl($scope) {
+        $scope.responseText = undefined;
+        $scope.$watch('responseText', function(newV, oldV){
+            if(newV && newV != oldV){
+                alert('选中项是：' + newV);
+                $scope.responseText = undefined;
+            }
+        });
+        $scope.removef = function(f){
+            console.log(f);
+        };
+    }
+
+    angular.module('myApp',['ui.wisoft.fileupload', 'ui.wisoft.dialog','ui.wisoft.progress'])
+            .controller('mainCtrl',mainCtrl);
+
+</script>
+
+</body>
+</html>

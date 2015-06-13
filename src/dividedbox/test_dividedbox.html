@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft" style="height: 100%;">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>dividedbox</title>
+    <link rel="stylesheet" href="../../themes/default/theme.css"/>
+    <link rel="stylesheet" href="../../themes/default/dividedbox.css"/>
+    <style type="text/css">
+        .wi-dividedbox-group:nth-child(2) {
+            background: #f10;
+        }
+
+        .wi-dividedbox-group:nth-child(3) {
+            background: #f50;
+        }
+
+        .wi-dividedbox-group:nth-child(4) {
+            background: #fa0;
+        }
+
+        .wi-dividedbox-group:nth-child(5) {
+            background: #fe0;
+        }
+    </style>
+</head>
+<body style="height: 100%;">
+<div style="width:65%; height: 95%;  border:solid 1px crimson; background-color: #eee; float: left;">
+    <wi-hdividedbox style="border: solid 3px #ccc;">
+        <wi-hdividedbox-group collapsed="true" width="250px"
+                              wi-icon="../../misc/tempimg/button/iconl.gif" wi-title>1-1</wi-hdividedbox-group>
+        <wi-hdividedbox-group width="25%">1-2</wi-hdividedbox-group>
+        <wi-hdividedbox-group collapseto="right">1-3</wi-hdividedbox-group>
+        <wi-hdividedbox-group collapseto="left">1-4</wi-hdividedbox-group>
+        <wi-hdividedbox-group collapseto="left">1-5</wi-hdividedbox-group>
+    </wi-hdividedbox>
+</div>
+
+<div style="width:30%; height:95%; border:solid 1px crimson; background-color: #eee; float: left;">
+    <wi-vdividedbox style="border: solid 3px #ccc;" resizable="false">
+        <wi-vdividedbox-group collapseto="up" collapsed="true" height="100px">1-1</wi-vdividedbox-group>
+        <wi-vdividedbox-group collapseto="down" height="100px">1-2</wi-vdividedbox-group>
+        <wi-vdividedbox-group collapseto="down">1-3</wi-vdividedbox-group>
+    </wi-vdividedbox>
+</div>
+<script src="../../lib/angular.js"></script>
+<script src="../transition/transition.js"></script>
+<script src="dividedbox.js"></script>
+<script>
+    angular.module('ui.wisoft', ['ui.wisoft.dividedbox']);
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft" style="height: 100%;">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>button</title>
+    <link rel="stylesheet" href="../../themes/blue/theme.css"/>
+</head>
+<body ng-cloak  ng-controller="mainCtrl as mc">
+<form onsubmit="console.log(111);">
+    <wi-button label="提交按钮" wiType="submit"></wi-button>
+    <!--<wi-button label="普通按钮"></wi-button>-->
+    <button id="btn1">111</button>
+</form>
+
+<wi-button label="左 icon" iconl="../../misc/tempimg/button/iconl.gif"></wi-button>
+<wi-button label="右 icon" iconr="../../misc/tempimg/button/iconr.gif"></wi-button>
+<wi-button label="两侧 icon" iconl="../../misc/tempimg/button/iconl.gif" iconr="../../misc/tempimg/button/iconr.gif"></wi-button>
+<wi-button label="指定宽度" width="200"></wi-button>
+<wi-button label="禁用" disabled></wi-button>
+<script src="../../lib/angular.js"></script>
+<script src="button.js"></script>
+<script>
+   var btn = document.getElementById('btn1');
+   btn.setAttribute('type','submit');
+
+
+
+    angular.module('ui.wisoft', ['ui.wisoft.button']).
+            controller('mainCtrl', ['$scope', function ($scope) {
+                var ctrl = this;
+            }]);
+</script>
+</body>
+</html>

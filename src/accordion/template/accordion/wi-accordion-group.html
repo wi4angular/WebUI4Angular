@@ -1,0 +1,8 @@
+<div class="wi-accordion-group" ng-class="{'open': isOpen}">
+  <div class="wi-accordion-head"  ng-click="toggleOpen()" ng-class="{'wi-accordion-disabled': isDisabled}"
+       ng-style="{'height': style.headheight, 'line-height': style.headheight}"
+       wi-accordion-transclude="heading">{{heading}}</div>
+  <div class="wi-accordion-panel" wi-collapse="!isOpen">
+      <div class="wi-accordion-cont" ng-style="{'height':panelStyle.cheight}" ng-transclude></div>
+  </div>
+</div>

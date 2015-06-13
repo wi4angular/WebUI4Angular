@@ -1,0 +1,21 @@
+<div ng-controller="MenuDemoCtrl as mc">
+    <p>【wi-right-menu】 右键菜单标识。</p>
+    <p>【adaptable】 true 时允许自适应，false 时不论空间是否足够都以用户定义的方向弹出，默认为 true。</p>
+    <p>【position】 默认为 "bottom-left"。</p>
+    <p>【filterable】 第一级菜单是否支持关键字过滤，默认为 false。</p>
+    <p>【dataprovider】 json 格式的数据源。</p>
+    <p>【selectitem】 选中的菜单项绑定，详见选中事件。</p>
+    <hr />
+    <p>
+        固定方向弹出菜单：
+        <select ng-model="options.pos0" ng-options="val for val in options.pos0Arr"></select>
+        -<select ng-model="options.pos1" ng-options="val for val in options.pos1Arr"></select>
+    </p>
+    <div>
+        <wi-menu adaptable="false"
+                 position="{{options.pos0+'-'+options.pos1}}"
+                 dataprovider="mc.data">
+            <input type="button" class="wi-btn" value="固定方向的菜单" />
+        </wi-menu>
+    </div>
+</div>

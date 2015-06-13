@@ -1,0 +1,14 @@
+{
+    "cname":"accordion",
+    "discribe":"accordion(折叠面板)",
+    "demos":[
+        {"demoDiscribe":"基本","html":"accordion/docs/demo1.html","js":"accordion/docs/demo.js"},
+        {"demoDiscribe":"动态创建","html":"accordion/docs/demo2.html","js":"accordion/docs/demo2.js"},
+        {"demoDiscribe":"自定义heading","html":"accordion/docs/demo3.html","js":"accordion/docs/demo3.js"},
+        {"demoDiscribe":"只打开一个","html":"accordion/docs/demo_oneOpen.html","js":"accordion/docs/demo.js"},
+        {"demoDiscribe":"设定高度","html":"accordion/docs/demo_height.html","js":"accordion/docs/demo.js"},
+        {"demoDiscribe":"修改is-open","html":"accordion/docs/demo_isOpen.html","js":"accordion/docs/demo_isOpen.js"},
+        {"demoDiscribe":"事件监听","html":"accordion/docs/demo_listener.html","js":"accordion/docs/demo_listener.js"},
+        {"demoDiscribe":"wiid调用方法","html":"accordion/docs/demo_method.html","js":"accordion/docs/demo_method.js"}
+    ]
+}

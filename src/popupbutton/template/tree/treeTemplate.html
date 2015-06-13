@@ -1,0 +1,44 @@
+<ul style="padding-left: 0;margin-left: 0;">
+    <li ng-repeat="data in vm._data | orderBy : vm._orderby" style="list-style:none;cursor: pointer;">
+        <div ng-class="{'selected':data['isChecked']&&!data['_semi']}"
+             ng-style="{'padding-left': 22*(data['_level']+(data['children']||data[vm._isbranch]?0:1))+'px'}">
+            <span class="icon-{{data['_close']?'plus':'minus'}}"
+                  ng-if="data['children']||data[vm._isbranch]"
+                  ng-click="vm._toggleNode(data)"/>
+            <span class="loading"
+                  ng-if="data['_loading']"/>
+            <span class="icon-folder-{{data['_close']?'close':'open'}}"
+                  ng-if="(data['children']||data[vm._isbranch]) && !data['_loading']"
+                  ng-click="vm._toggleNode(data)"/>
+            <span class="icon-file"
+                  ng-if="!data['children']&&!data[vm._isbranch]"
+                  ng-click="vm._itemClick(data)"/>
+            <input type="checkbox"
+                   ng-class="{'transparent-50':data['_semi']}"
+                   ng-if="multiselect"
+                   ng-checked="data['isChecked']"
+                   ng-click="vm._itemClick(data)"/>
+            <span ng-click="vm._itemClick(data)"
+                  ng-dblclick="vm._itemDblClick(data)">
+                {{data[vm._labelfield]}}
+            </span>
+            <span ng-if="itemrenderer"
+                  ng-include src="itemrenderer"
+                  ng-click="vm._itemClick(data)"/>
+        </div>
+
+        <wi-tree ng-if="!data['_close'] && data['children']"
+                 recursion="true"
+                 dataProvider="data['children']"
+                 idField="{{vm._idfield}}"
+                 pidField="{{vm._pidfield}}"
+                 labelField="{{vm._labelfield}}"
+                 multiSelect="{{multiselect}}"
+                 itemClick="itemclick()"
+                 itemOpen="itemopen()"
+                 itemRenderer="{{itemrenderer}}"
+                 filterBy="filterby"
+                 orderBy="{{vm._orderby}}">
+        </wi-tree>
+    </li>
+</ul>

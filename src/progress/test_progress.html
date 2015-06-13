@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp" style="height: 100%">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>progress</title>
+    <link rel="stylesheet" href="../../themes/default/wi-all.css"/>
+</head>
+<body ng-controller="mainCtrl" ng-cloak style="height: 100%">
+<wi-progress width="220" height="20" type="'stage'"
+             label="label" labelplacement="'top'"
+             value="value" maxValue="200"></wi-progress>
+
+<wi-progress width="220" height="30" type="'wave'"
+             label="label" labelElem="elem" labelplacement="'right'"
+             value="value" maxValue="200"></wi-progress>
+
+<wi-progress width="220" height="20" type="'nomal'"
+             label="label" labelElem="elem" labelplacement="'right'"
+             value="value" maxValue="200"></wi-progress>
+
+<script src="../../lib/angular-1.3.6/angular.js"></script>
+<script src="../bindHtml/bindHtml.js"></script>
+<script src="progress.js"></script>
+<script>
+    function mainCtrl($scope, $interval, $compile) {
+        $scope.label = '';
+        $scope.value = 0;
+        $scope.abc = 1000;
+        var i = 0;
+        var timer = $interval(function(){
+            $scope.value = i*2;
+            $scope.label = 'tips' + i*2;
+            i++;
+            $scope.abc--;
+            if(i==51) $interval.cancel(timer);
+        },100);
+
+        $scope.elem = $compile('<div style="background: pink">{{abc}}</div>')($scope);
+    }
+
+    angular.module('myApp',['ui.wisoft.progress'])
+            .controller('mainCtrl',mainCtrl);
+</script>
+</body>
+</html>

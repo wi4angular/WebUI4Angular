@@ -1,0 +1,22 @@
+<div ng-controller="tilelistCtrl">
+    <p>默认参数：纵向滚动条；列宽：100px；行高：30px</p>
+    <wi-tilelist dataProvider="tilelistdata" width="50%" height="100" itemRender="myRender.html">
+        <script type="text/ng-template" id="myRender.html">
+            <div ng-style="{'background-color':data.color,'width': '100%','height': '100%'}"></div>
+        </script>
+    </wi-tilelist>
+
+    <p>指定列数：2 列</p>
+    <wi-tilelist dataProvider="tilelistdata" width="80%" height="150" itemRender="myRender1.html" colCount="2" rowHeight="50">
+        <script type="text/ng-template" id="myRender1.html">
+            <div ng-style="{'background-color':data.color,'width': '100%','height': '100%'}"></div>
+        </script>
+    </wi-tilelist>
+
+    <p>指定列宽：150px</p>
+    <wi-tilelist dataProvider="tilelistdata" width="80%" height="150" itemRender="myRender2.html" colWidth="150" rowHeight="50">
+        <script type="text/ng-template" id="myRender2.html">
+            <div ng-style="{'background-color':data.color,'width': '100%','height': '100%'}"></div>
+        </script>
+    </wi-tilelist>
+</div>

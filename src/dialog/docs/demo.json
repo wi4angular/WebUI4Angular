@@ -1,0 +1,11 @@
+{
+    "cname":"dialog",
+    "discribe":"dialog弹出框",
+    "demos":[
+        {"demoDiscribe":"弹出dialog","html":"dialog/docs/demo1.html","js":"dialog/docs/demo1.js"},
+        {"demoDiscribe":"关闭dialog","html":"dialog/docs/demo5.html","js":"dialog/docs/demo5.js"},
+        {"demoDiscribe":"监听窗口关闭","html":"dialog/docs/demo2.html","js":"dialog/docs/demo2.js"},
+        {"demoDiscribe":"打开和关闭窗口时的数据传递","html":"dialog/docs/demo3.html","js":"dialog/docs/demo3.js"},
+        {"demoDiscribe":"其它","html":"dialog/docs/demo4.html","js":"dialog/docs/demo4.js"}
+    ]
+}

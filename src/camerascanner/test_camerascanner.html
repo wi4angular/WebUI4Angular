@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>cameraScanner</title>
+    <link rel="stylesheet" href="../../themes/blue/theme.css"/>
+    <link rel="stylesheet" href="../../themes/blue/dialog.css">
+    <link rel="stylesheet" href="../../themes/blue/imageview.css"/>
+    <link rel="stylesheet" href="../../themes/blue/camerascanner.css"/>
+    <link rel="stylesheet" href="../../themes/blue/alert.css"/>
+</head>
+<body ng-controller="mainCtrl">
+
+    <wi-cameraScanner url="{{uploadUrl}}" uploadComplete="uploadComplete" toPdf="true">拍照上传</wi-cameraScanner>
+
+    <script src="../../lib/angular-1.3.0/angular.js"></script>
+    <script src="../imageview/imageview.js"></script>
+    <script src="../dialog/dialog.js"></script>
+    <script src="../alert/alert.js"></script>
+    <script src="camerascanner.js"></script>
+    <script type="text/javascript">
+        angular.module('ui.wisoft', ['ui.wisoft.camerascanner'])
+                .controller('mainCtrl', function($scope,wiAlert){
+                    $scope.uploadUrl = 'http://192.10.110.174:8804/NewFrame/CommonServlet?bean=FileUploadCommonPO&path=D:\\wisoft\\&sid=408aee4e3bacd24f013bb0ec0e650030';
+
+                    $scope.uploadComplete = function(data) {
+                        setTimeout(function(){
+//                            alert('文件下载地址：http://192.10.110.174:8804/NewFrame/CommonServlet?bean=FileDownloadPO&file'+data);
+
+                            var option = {
+                                width: 600,
+                                title: '文件下载地址',
+                                content:'http://192.10.110.174:8804/NewFrame/CommonServlet?bean=FileDownloadPO&file'+data
+                            }
+                            wiAlert.info(option);
+                        }, 500);
+
+                    }
+        });
+    </script>
+</body>
+</html>

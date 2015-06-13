@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="dialogIniframe">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../themes/default/wi-all.css">
+    <script src="../../../js/angular.min.js"></script>
+    <script src="../../../grunt-scripts/WebUI4Angular-tpls-all-mini.js" />
+</head>
+<body  ng-controller="dialogIframCtl">
+<a href="" ng-click="openInfo()">在iframe窗口内dialog</a>
+
+    <script>
+        var app = angular.module('dialogIniframe', ['ui.wisoft']);
+        function dialogIframCtl($scope,wiDialog){
+
+            // dialogInIframe:true
+            $scope.openInfo = function () {
+                wiDialog.open({
+                    plain:true,
+                    template:'<div style="color: red;height: 60px;padding: 10px;">简单弹出框</div>',
+                    title:'dialog',
+                    width:280,
+                    dialogInIframe:true
+                });
+            };
+        }
+    </script>
+</body>
+</html>

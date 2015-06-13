@@ -1,0 +1,7 @@
+{
+    "cname":"cameraScanner",
+    "discribe":"cameraScanner（拍照上传）",
+    "demos":[
+         {"demoDiscribe":"拍照上传","html":"camerascanner/docs/demo1.html","js":"camerascanner/docs/demo1.js"}
+    ]
+}

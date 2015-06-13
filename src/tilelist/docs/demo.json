@@ -1,0 +1,9 @@
+{
+   "cname":"tilelist",
+   "discribe":"tileList(瓦片列表)",
+   "demos":[
+       {"demoDiscribe":"纵向基本用法","html":"tilelist/docs/demo.html","js":"tilelist/docs/demo.js"},
+       {"demoDiscribe":"横向基本用法","html":"tilelist/docs/demoH.html","js":"tilelist/docs/demo.js"},
+       {"demoDiscribe":"数据源操作","html":"tilelist/docs/demoData.html","js":"tilelist/docs/demoData.js"}
+   ]
+}

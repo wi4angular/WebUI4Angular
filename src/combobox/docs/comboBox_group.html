@@ -1,0 +1,11 @@
+<div ng-controller="ComboBoxDemoGroupCtrl">
+    <wi-comboBox dataProvider="groupData"
+                 itemChange="itemChangeHandler"
+                 labelField="text"
+                 groupField="group"
+                 width="250"
+                 rowCount="10">
+    </wi-comboBox>
+
+    <p>{{selected | json}}</p>
+</div>

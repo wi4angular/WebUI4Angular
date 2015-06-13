@@ -1,0 +1,19 @@
+<div class="wi-panel" ng-class="{'wi-panel-close': !isOpen}"
+     ng-style="{'width': width}">
+    <div class="wi-panel-head" ng-click="collbyHead()">
+        <div wi-panel-transclude="headingEl">
+            <img ng-if="headicon" class="wi-panel-icon" ng-src="{{headicon}}" />
+            {{heading}}
+        </div>
+        <div ng-if="headTools.visible" class="wi-panel-tools"><!--span首尾相连，避免换行产生空格-->
+            <span ng-repeat="tool in headTools.custom track by tool.name"
+                  ng-click="tool.opt($event)" class="{{tool.cls}}"></span
+            ><span ng-if="headTools['collapse']"
+                  ng-click="collbyTool($event)"
+                  ng-class="{'icon-chevron-down':collapsed, 'icon-chevron-up':!collapsed}"></span
+            ><span ng-if="headTools['close']" class="icon-remove"
+                  ng-click="closebyTool($event)"></span>
+        </div>
+    </div>
+    <div class="wi-panel-box" wi-collapse="collapsed" ng-transclude></div>
+</div>

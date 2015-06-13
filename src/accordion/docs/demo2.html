@@ -1,0 +1,7 @@
+<div ng-controller="AccordionDemoCtrl2">
+  <wi-accordion>
+    <wi-accordion-group heading="{{group.title}}" ng-repeat="group in groups" is-open="group.open">
+      {{group.content}}
+    </wi-accordion-group>
+  </wi-accordion>
+</div>

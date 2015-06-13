@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft">
+<head lang="en">
+    <!--<link rel="stylesheet" href="../../misc/css/bootstrap.css">-->
+    <link rel="stylesheet" href="../../themes/default/theme.css">
+    <link rel="stylesheet" href="../../themes/default/collapse.css">
+    <script src="../../lib/angular.js" ></script>
+    <!--<script src="../../build/WebUI4Angular-tpls-all.js" ></script>-->
+    <script src="../transition/transition.js" ></script>
+    <script src="collapse.js" ></script>
+
+</head>
+<body>
+<div ng-controller="CollapseDemoCtrl">
+    <button class="wi-btn" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+    <hr>
+    <div wi-collapse="isCollapsed">
+        <div style="width: 100%;height: 40px;background-color: #d3d3d3">Some content</div>
+    </div>
+</div>
+<script>
+    angular.module('ui.wisoft',['ui.wisoft.collapse']);
+    function CollapseDemoCtrl($scope) {
+        $scope.isCollapsed = false;
+    }
+</script>
+</body>
+</html>

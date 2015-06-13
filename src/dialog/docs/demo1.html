@@ -1,0 +1,19 @@
+
+<script type="text/ng-template" id="firstDialogId">
+    <div style="padding: 10px;" >
+        <div>
+            <span style="font-weight: bold">从scope参数中取得数据</span><br>
+            公司名称: {{dialogData.username}}<br>
+            公司地址: {{dialogData.address}}
+        </div>
+        <div style="clear: left;float: right">
+            <button type="button"  ng-click="closeScriptDialog()">关闭</button>
+        </div>
+    </div>
+</script>
+
+<div ng-controller="dialogCtrl1">
+    <a href="" ng-click="openByStringTpl()">使用字符串作为模板</a><br>
+    <a href="" ng-click="openByScriptTpl()">使用script作为模板</a><br>
+    <a href="" ng-click="openDefaultByUrl()">使用Url作为模板</a><br>
+</div>

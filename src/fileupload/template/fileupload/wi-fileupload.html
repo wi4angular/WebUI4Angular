@@ -1,0 +1,20 @@
+<ul class="wi-fileupload" ng-style="{display: files.length>0 && !fileULOptions.modal ? '' : 'none'}">
+    <li ng-repeat="file in files track by file.id">
+        <span class="wi-fileupload-info" ng-style="{cursor: file.stat==3 ? 'pointer': ''}" ng-click="getResponse(file)">
+            <span class="wi-fileupload-icon icon-{{file.type}}"></span>
+            {{file.name}}
+            <span class="wi-fileupload-tip">({{file.size}})</span>
+        </span>
+        <span class="wi-fileupload-completed" ng-style="{display: file.stat==3 ? '' : 'none'}">完成</span>
+        <span class="wi-fileupload-queued" ng-style="{display: file.stat==1 ? '' : 'none'}">等待上传</span>
+        <!--<span class="wi-fileupload-uploading" ng-style="{display: file.stat==2 ? '' : 'none'}">
+            <span class="wi-fileupload-bar">
+                <div class="wi-fileupload-progress" ng-style="{'width': file.percent + '%'}"></div>
+            </span>
+            {{file.percent}}%
+        </span>-->
+        <wi-progress ng-style="{display: file.stat==2 ? '' : 'none'}" label="file.progressLabel" value="file.percent"></wi-progress>
+        <span class="wi-fileupload-error" ng-style="{display: file.stat==4 ? '' : 'none'}">上传失败</span>
+        <span class="wi-fileupload-del" ng-click="removeFile(file)">删除</span>
+    </li>
+</ul>

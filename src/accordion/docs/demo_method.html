@@ -1,0 +1,29 @@
+<div ng-controller="AccordionDemoMethodCtrl">
+    <p>
+        <button class="wi-button" ng-click="element()">jqlite元素</button>&nbsp;
+        <button class="wi-button" ng-click="options()">用户配置</button>&nbsp;
+        <button class="wi-button" ng-click="panels()">所有面板的scope</button>&nbsp;
+        <button class="wi-button" ng-click="getSelect()">选中项scope</button>&nbsp;
+        <button class="wi-button" ng-click="getGroup()">返回index=1的项</button>
+    </p>
+    <p>
+        <button class="wi-button" ng-click="toggle()">切换index=2项的选中状态</button>
+    </p>
+    <p>
+        <button class="wi-button" ng-click="reCompute()">重新计算尺寸</button>&nbsp;（此处无明显效果）
+    </p>
+    <wi-accordion width="80%" wiid="myAcc">
+        <wi-accordion-group heading="标题一">
+            内容一
+        </wi-accordion-group>
+        <wi-accordion-group heading="标题二">
+            内容二
+        </wi-accordion-group>
+        <wi-accordion-group heading="标题三">
+            内容三
+        </wi-accordion-group>
+        <wi-accordion-group heading="标题四">
+            内容四
+        </wi-accordion-group>
+    </wi-accordion>
+</div>

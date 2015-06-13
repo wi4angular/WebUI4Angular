@@ -1,0 +1,18 @@
+<script type="text/ng-template" id="dialog4close">
+    <div style="padding: 10px;" >
+        <div>
+            <span style="font-weight: bold">关闭一个dialog的方法</span><br>
+        </div>
+        <div style="clear: left;float: right">
+            <button type="button"  ng-click="closeScriptDialog()">关闭方法1(使用open打开dialog时有效)</button><br>
+            <button type="button"  ng-click="closeAll()">关闭方法2</button>
+            <button type="button"  ng-click="closeOne()">关闭方法3</button>
+            <button type="button"  ng-click="closeThisDialog()">关闭方法4</button><br>
+            <button type="button"  ng-click="confirm()">关闭方法5(使用openConfirm打开dialog时有效)</button>
+        </div>
+    </div>
+</script>
+<div  ng-controller="dialogCtrl5">
+    <a href="" ng-click="openByScriptTpl()">使用open弹出dialog</a><br>
+    <a href="" ng-click="openConfirmDialog()">使用openConfirm弹出dialog</a><br>
+</div>

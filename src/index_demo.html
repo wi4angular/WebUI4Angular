@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html ng-app="ui.wisoft">
+<head >
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv = "X-UA-Compatible" content = "IE=Edge,chrome=1" >
+    <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="google-code-prettify/prettify.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+	<script src="js/angular-1.3.6/angular.min.js"></script>
+    <script src="grunt-scripts/WebUI4Angular-tpls-all-mini.js"></script>
+    <script src="index_demo.js"></script>
+    <script src="demo/allDemo.js"></script>
+
+    <style type="text/css">
+        #headDiv {
+            width: 100%;
+            height: 40px;
+            border-bottom: solid 1px #ddd;
+            background-color: #efefef;
+            background: -webkit-linear-gradient(top, #fafafa 0, #efefef 100%);
+            background: -moz-linear-gradient(top, #fafafa 0, #efefef 100%);
+            background: -o-linear-gradient(top, #fafafa 0, #efefef 100%);
+            background: linear-gradient(to bottom, #fafafa 0, #efefef 100%);
+            background-repeat: repeat-x;
+            top: 0;
+            position: fixed;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+            overflow: visible;
+            font-size: 20px;
+        }
+        #changeTheme{
+            position: absolute;
+            right: 200px;
+            top: 8px;;
+            font-size: 12px;
+        }
+        #headDiv .brand {
+            display: block;
+            float: left;
+            padding: 5px 20px 10px;
+            margin-left: -40px;
+            font-weight: 200;
+            color: #777777;
+            text-shadow: 0 1px 0 #ffffff;
+            text-decoration: none;;
+        }
+        #headDiv .nav {
+            position: relative;
+            left: 0;
+            display: block;
+            float: left;
+            margin: 0 10px 0 0;
+            list-style: none;
+            box-shadow:0 0 6px 1px #cdcdcd inset;
+            background: #E5E5E5;
+        }
+        #headDiv .nav li {
+            float: left;
+            line-height: 20px;
+            list-style: none;
+        }
+        #headDiv .nav li > a {
+            font-size: 14px;;
+            margin: 0;
+            float: none;
+            padding: 9px 15px 9px;
+            color: #777777;
+            text-decoration: none;
+            text-shadow: 0 1px 0 #ffffff;
+        }
+        #headDiv .nav li > a:hover {
+            color: #333;
+        }
+        #search-query {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+            -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+            -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+            transition: border linear 0.2s, box-shadow linear 0.2s;
+
+            height: 30px;
+            padding: 4px 10px;
+            width: 200px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+        }
+        #search-query:focus{border-color: rgba(82, 168, 236, 0.8);
+            outline: 0;
+            outline: thin dotted \9;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+        }
+
+        #right{
+            float: left;
+            width: 800px;
+            border: solid 1px #f5f5f5;
+            position: relative;
+            margin-left: 5px;
+            padding: 15px
+        }
+        #right p{ margin-bottom: .5em;}
+        #releaseDiv{
+            border: solid 1px #f5f5f5;
+            position: relative;
+            margin-left: 5px;
+            padding: 15px;
+            margin-top:10px;
+        }
+        #releaseDiv p.tips{
+            text-indent: 1em;
+            font-style: italic;
+        }
+        .demoRight{ padding: 5px;}
+        #releaseDiv > h5,
+        .demoRight > h4,
+        .demoRight > h5{
+            margin: 10px 0;
+            font-weight: bold;
+            line-height: 20px;
+            color: inherit;
+            font-size: 17.5px;
+        }
+        .demoRight > h5{
+            font-size: 14px;
+        }
+        .demoRight a{
+            color: #0088cc;
+            text-decoration: none;
+        }
+        .demoRight pre{
+            display: block;
+            padding: 5px;
+            margin: 5px;
+            font-size: 13px;
+            line-height: 20px;
+            word-break: break-all;
+            word-wrap: break-word;
+            white-space: pre;
+            white-space: pre-wrap;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+        }
+    </style>
+    <link id="themeLink"  rel="stylesheet" href="themes/default/wi-all.css" />
+    <script src="My97DatePicker/WdatePicker.js"></script><!-- 需在 wi-all.css 之后引入，且不可重命名 -->
+</head>
+<body ng-controller="mainCtrl">
+<div id="headDiv">
+    <div style="width: 940px; margin: 0 auto;">
+        <a class="brand">WebUI4Angular帮助</a>
+        <ul class="nav">
+            <li>
+                <a href="index.html" class="brand" onClick="javascript:window.open(this.href,'_blank');return false;">
+                    <span class="icon-book"></span>  API文档</a>
+            </li>
+        </ul>
+        <div id="changeTheme">
+            <wi-combobox dataprovider="themes" width="100" selecteditem="selectedTheme" itemchange="themeChangeHandler"
+                         rowcount="{{::themes.length}}" labelfield="name" >
+            </wi-combobox>
+        </div>
+    </div>
+</div>
+
+<div style="margin:50px auto;width: 1024px;" class="wi-clearf" >
+    <div style="width: 200px; height: 600px; float: left;">
+        <input type="text" ng-model="query" placeholder="" tabindex="1" accesskey="s"  id="search-query">
+        <wi-accordion  style="margin-top: 5px;" oneopen="true">
+            <wi-accordion-group  ng-repeat="item in demosInfo | filter:(query ? {'discribe':query} : '') track by $index" heading="{{item.discribe}}"
+                                 title="{{item.discribe}}" is-open="item.isOpen">
+                <a style="cursor: pointer" ng-repeat="d in item.demos | filter:query" ng-click="changeDemo(d)"  >
+                    {{d.demoDiscribe}}<br>
+                </a>
+            </wi-accordion-group>
+        </wi-accordion>
+    </div>
+    <wi-tabset id="right">
+        <wi-tab heading="欢迎" regular="true" active="actives.active1">
+            <div class="demoRight">
+                <h4>欢迎使用wisoftUI示例帮助</h4><br>
+                <h5>公司AngularJS论坛地址</h5>
+                <h5><a href="http://bbs.wisoft.com.cn/forum.php?mod=forumdisplay&fid=47" onclick="javascript:window.open(this.href,'_blank');return false;">http://bbs.wisoft.com.cn/forum.php?mod=forumdisplay&amp;fid=47</a></h5><br>
+                <div id="releaseDiv">
+                    <h5>更新历史</h5>
+                    <p><b>2015-03-16 WebUI4Angular-1.0-beta.4 发布。</b></p>
+                    <p class="tips">1. $position 中新增 offsetTop(element) 方法；</p>
+                    <p class="tips">2. 添加弹出类组件（dialog，alert，popupbutton，combobox，menu）层级控制，保证后弹出的内容在最上层显示；</p>
+                    <p class="tips">3. tabset 新增纵向滚动支持，支持定义标签尺寸及设置固定标签，删除 justified 均分支持，修改右键弹出菜单，调整选中项删除、切换操作；</p>
+                    <p class="tips">4. datagrid 修改冲突属性的判断，修改并优化内部尺寸计算，调整模板，优化数据请求、分页、翻页操作等；</p>
+                    <p class="tips">5. 优化 tooltip 弹出计算，支持禁用弹出时的动画，支持添加在顶层 body 下，移除 dom 时销毁资源；</p>
+                    <p class="tips">6. 支持设置是否至多打开一个 accordionGroup，修复外部修改 isOpen 属性时不能打开其他 accordionGroup 的 bug；</p>
+                    <p class="tips">7. 新增 progress 组件。</p><br>
+
+                    <p><b>2014-12-12 WebUI4Angular-1.0-beta.3 发布。</b></p>
+                    <p class="tips">1. 支持 angular-1.3.6 版本；</p>
+                    <p class="tips">2. 优化 datagrid 性能；</p>
+                    <p class="tips">3. 拍照组件更名为 camerascanner，并新增图像旋转，裁剪，相片质量控制等功能；</p>
+                    <p class="tips">4. dialog 支持拖动，并新增非模态弹框；</p>
+                    <p class="tips">5. dividedbox 支持自定义标题栏文本图标；</p>
+                    <p class="tips">6. accordion 支持自定义标题栏高度；</p>
+                    <p class="tips">7. menu 修复子菜单弹出 bug，修复弹出层受父容器 overflow 属性影响导致的 bug；</p>
+                    <p class="tips">8. 新增 fileUpload 文件上传组件（IE9 暂不支持）；</p>
+                    <p class="tips">9. 新增 bindhtml 组件。</p><br>
+
+                    <p><b>2014-11-17 WebUI4Angular-1.0-beta.2 发布。</b></p>
+                    <p class="tips">1. 修正组件的部分 bug；</p>
+                    <p class="tips">2. 新增 alert 组件；</p>
+                    <p class="tips">3. 新增 panel 组件；</p>
+                    <p class="tips">4. 新增 button 的封装；</p>
+                    <p class="tips">5. 新增（输入+搜索）组件；</p>
+                    <p class="tips">6. 新增拍照组件；</p>
+                    <p class="tips">7. 新增 Image 查看组件；</p>
+                    <p class="tips">8. 新增 messageTip 组件。</p><br>
+
+                    <p><b>2014-10-24  WebUI4Angular-1.0-beta.1 发布。</b></p>
+                </div>
+            </div>
+        </wi-tab>
+        <wi-tab heading="示例" regular="true" active="actives.active2">
+            <div class="demoRight" ng-show="demoSrc">
+
+                <h4>示例：</h4><br />
+                <div  ng-include src="demoSrc" ></div>
+                <br />
+                <h4>代码：</h4><br />
+
+                <wi-tabset>
+                    <wi-tab heading="Html片段" regular="true" active="true">
+                    <pre id="htmlCode" class="prettyprint"></pre>
+                    </wi-tab>
+                    <wi-tab heading="JavaScript" regular="true">
+                    <pre id="jsCode" class="prettyprint"></pre>
+                    </wi-tab>
+                </wi-tabset>
+            </div>
+        </wi-tab>
+    </wi-tabset>
+
+
+</div>
+
+</body>
+</html>

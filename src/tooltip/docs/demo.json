@@ -1,0 +1,7 @@
+{
+   "cname":"tooltip",
+   "discribe":"tooltip(提示标签)",
+   "demos":[
+       {"demoDiscribe":"常见功能","html":"tooltip/docs/demo.html","js":"tooltip/docs/demo.js"}
+   ]
+}

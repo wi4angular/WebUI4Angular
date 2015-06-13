@@ -1,0 +1,24 @@
+<div ng-controller="tabsetMainCtrl3">
+    <p>
+        closeable="false" 整个 tabset 中的标签不可关闭，此时可以设置 disabled 属性。
+    </p>
+    <p>
+        <button class="wi-btn" ng-click="vm.disabled = !vm.disabled"> 切换</button>
+        点击“切换”禁用/启用第一个标签。
+    </p>
+
+    <wi-tabset closeable="false">
+        <wi-tab heading="标签 1" icon="misc/icon/redflag16.png" active="true" disabled="vm.disabled">
+            标签 1 内容
+        </wi-tab>
+        <wi-tab heading="标签 2">
+            标签 2 内容
+        </wi-tab>
+        <wi-tab heading="标签 3">
+            标签 3 内容
+        </wi-tab>
+        <wi-tab heading="标签 4">
+            标签 4 内容
+        </wi-tab>
+    </wi-tabset>
+</div>

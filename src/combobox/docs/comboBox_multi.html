@@ -1,0 +1,10 @@
+<div ng-controller="ComboBoxDemoMultiCtrl">
+    <wi-comboBox dataProvider="mydata"
+                 selectedItem="selected"
+                 width="500"
+                 rowCount="8"
+                 multiselect="true">
+    </wi-comboBox>
+
+    <p>{{selected | json}}</p>
+</div>
