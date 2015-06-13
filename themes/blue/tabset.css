@@ -1,10 +1,14 @@
 .wi-tabset {
-  background-color: #ffffff;
-  padding: 0;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#37ffffff', endColorstr='#00ffffff', GradientType=0);
+  background-color: #daecf4;
+  border: solid 1px #94c0d2;
+  padding: 5px;
   position: relative;
 }
 .wi-tabcont {
-  border: solid 1px #cccccc;
+  border: solid 1px #7ec6e3;
   background: #ffffff;
 }
 .wi-tabpane {
@@ -17,11 +21,11 @@
   cursor: pointer;
   font-size: 18px;
   text-align: center;
-  color: #808080;
+  color: #558193;
 }
 .wi-tabctrl-hor:hover,
 .wi-tabctrl-ver:hover {
-  color: #333333;
+  color: #003f59;
 }
 li.wi-tab {
   overflow: hidden;
@@ -39,7 +43,7 @@ li.wi-tab-disabled {
 /* ---------- 横向 ---------- */
 .wi-tabset-h > .wi-tabhead {
   position: relative;
-  border-bottom: solid 1px #cccccc;
+  border-bottom: solid 1px #7ec6e3;
 }
 .wi-tabctrl-hor {
   height: 100%;
@@ -78,11 +82,12 @@ ul.wi-tabul-hor {
   /* 翻页时用 left 定位 */
 }
 .wi-tabul-hor > li.wi-tab {
-  border: solid 1px #cccccc;
-  color: #000000;
-  background-color: #f5f5f5;
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.08) 100%);
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.08) 100%);
+  border: solid 1px #94c0d2;
+  color: #003f59;
+  background-color: #daecf4;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#37ffffff', endColorstr='#00ffffff', GradientType=0);
   float: left;
   padding: 0 .5em;
   height: 100%;
@@ -96,16 +101,15 @@ ul.wi-tabul-hor {
   padding-right: 1.8em;
 }
 .wi-tabul-hor > li.wi-tab.wi-tab-active {
-  border: solid 1px #cccccc;
+  border: solid 1px #7ec6e3;
   background: #ffffff;
-  color: #000000;
+  color: #003f59;
   border-bottom-color: #ffffff;
 }
 .wi-tabul-hor > li.wi-tab:not(.wi-tab-disabled):not(.wi-tab-active):hover {
-  border-color: #cccccc;
-  color: #000000;
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.06) 100%);
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.06) 100%);
+  border-color: #7ec6e3;
+  color: #003f59;
+  background-color: #7bd2f6;
 }
 .wi-tabul-hor > .wi-tab > span.icon-remove {
   position: absolute;
@@ -128,14 +132,14 @@ ul.wi-tabul-hor {
 /* ---------- 纵向 ---------- */
 .wi-tabset-v > .wi-tabhead {
   float: left;
-  border-right: solid 1px #cccccc;
+  border-right: solid 1px #7ec6e3;
 }
 .wi-tabset-vh > .wi-tabhead {
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  border-right: solid 1px #cccccc;
+  left: 5px;
+  top: 5px;
+  bottom: 5px;
+  border-right: solid 1px #7ec6e3;
 }
 .wi-tabctrl-ver {
   width: 100%;
@@ -185,11 +189,12 @@ ul.wi-tabul-ver {
   /* 翻页时用 top 定位 */
 }
 .wi-tabul-ver > li.wi-tab {
-  border: solid 1px #cccccc;
-  color: #000000;
-  background-color: #f5f5f5;
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.08) 100%);
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.08) 100%);
+  border: solid 1px #94c0d2;
+  color: #003f59;
+  background-color: #daecf4;
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#37ffffff', endColorstr='#00ffffff', GradientType=0);
   width: 100%;
   border-radius: 5px 0 0 5px;
   border-right-color: transparent;
@@ -202,16 +207,15 @@ ul.wi-tabul-ver {
   margin-bottom: 2px;
 }
 .wi-tabul-ver > li.wi-tab.wi-tab-active {
-  border: solid 1px #cccccc;
+  border: solid 1px #7ec6e3;
   background: #ffffff;
-  color: #000000;
+  color: #003f59;
   border-right-color: #ffffff;
 }
 .wi-tabul-ver > li.wi-tab:not(.wi-tab-disabled):not(.wi-tab-active):hover {
-  border-color: #cccccc;
-  color: #000000;
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.06) 100%);
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.06) 100%);
+  border-color: #7ec6e3;
+  color: #003f59;
+  background-color: #7bd2f6;
 }
 .wi-tabul-ver > .wi-tab > span.icon-remove {
   position: absolute;
@@ -235,10 +239,10 @@ ul.wi-tabul-ver {
 }
 .wi-tabset-v > .wi-tabcont {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  left: 5px;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
   border-left: none;
 }
 .wi-tabset-vh > .wi-tabcont {

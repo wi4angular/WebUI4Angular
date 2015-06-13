@@ -14,7 +14,7 @@ input,
 button,
 select {
   font: 12px/1.5 "tahoma", "arial", "Hiragino Sans GB", "\5b8b\4f53", "sans-serif";
-  color: #000000;
+  color: #003f59;
 }
 form,
 button,
@@ -79,50 +79,44 @@ ol {
 /* 按钮 */
 .wi-btn,
 .wi-btn-primary {
-  color: #000000;
+  color: #003f59;
   text-align: center;
   vertical-align: middle;
   padding: 1px 6px 2px;
   padding: 2px 6px\0;
   cursor: pointer;
-  border: 1px solid #cccccc;
+  border: 1px solid #94c0d2;
   text-decoration: none;
-  background-color: #fff;
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.08) 100%);
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.08) 100%);
+  background-color: #daecf4;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#37ffffff', endColorstr='#00ffffff', GradientType=0);
 }
 .wi-btn:hover,
 .wi-btn:focus,
 .wi-btn-primary:hover,
 .wi-btn-primary:focus {
-  color: #000000;
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.06) 100%);
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.06) 100%);
+  color: #444444;
+  background-color: #7bd2f6;
   text-decoration: none;
 }
 .wi-btn:active,
 .wi-btn-primary:active {
-  color: #ffffff;
-  background-color: #0092dc;
+  color: #003f59;
   outline: 0;
-  -moz-box-shadow: 0 0 4px 1px #c5c5c5;
-  -webkit-box-shadow: 0 0 4px 1px #c5c5c5;
-  box-shadow: 0 0 4px 1px #c5c5c5;
+  -moz-box-shadow: 0 0 4px 1px #7ec6e3;
+  -webkit-box-shadow: 0 0 4px 1px #7ec6e3;
+  box-shadow: 0 0 4px 1px #7ec6e3;
 }
 .wi-btn:disabled {
-  background-color: #e9e9e9;
+  background-color: #eaf4f9;
   cursor: not-allowed;
 }
 .wi-btn-primary {
-  background-color: #d5d5d5;
-  background-image: -webkit-linear-gradient(top, #ebebeb 0, #dfdfdf 100%);
-  background-image: linear-gradient(to bottom, #ebebeb 0, #dfdfdf 100%);
-}
-.wi-btn-primary:hover,
-.wi-btn-primary:focus {
-  background-color: #eaeaea;
-  background-image: -webkit-linear-gradient(top, #efefef 0, #e5e5e5 100%);
-  background-image: linear-gradient(to bottom, #efefef 0, #e5e5e5 100%);
+  background-color: #daecf4;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#37ffffff', endColorstr='#00ffffff', GradientType=0);
 }
 .wi-btn-icon {
   width: 15px;
@@ -134,9 +128,9 @@ input[type="checkbox"].wi-checkbox {
   vertical-align: middle;
 }
 textarea {
-  color: #000000;
+  color: #003f59;
   background-color: #ffffff;
-  border: solid 1px #cccccc;
+  border: solid 1px #94c0d2;
   padding: 2px;
   outline: none;
 }
@@ -156,9 +150,9 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 select {
-  color: #000000;
+  color: #003f59;
   background-color: #ffffff;
-  border: solid 1px #cccccc;
+  border: solid 1px #94c0d2;
   padding: 2px;
   outline: none;
   height: 23px;
@@ -181,9 +175,9 @@ input[type="tel"]:focus,
 input[type="color"]:focus,
 select:focus {
   outline: 0;
-  -moz-box-shadow: 0 0 4px 1px #c5c5c5;
-  -webkit-box-shadow: 0 0 4px 1px #c5c5c5;
-  box-shadow: 0 0 4px 1px #c5c5c5;
+  -moz-box-shadow: 0 0 4px 1px #7ec6e3;
+  -webkit-box-shadow: 0 0 4px 1px #7ec6e3;
+  box-shadow: 0 0 4px 1px #7ec6e3;
 }
 textarea:disabled,
 input:not([type]):disabled,
@@ -202,7 +196,7 @@ input[type="search"]:disabled,
 input[type="tel"]:disabled,
 input[type="color"]:disabled,
 select:disabled {
-  background: #e9e9e9;
+  background: #eaf4f9;
   cursor: not-allowed;
 }
 /* 栅格布局 */

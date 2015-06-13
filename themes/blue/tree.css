@@ -6,13 +6,13 @@
   height: 22px;
 }
 .wi-tree-item:hover {
-  color: #000000;
-  background-color: #f3f3f3;
+  color: #003f59;
+  background-color: #eaf4f9;
 }
 .wi-tree-current,
 .wi-tree-current:hover {
   color: #ffffff;
-  background-color: #0092dc;
+  background-color: #2b7797;
 }
 .wi-tree-loading {
   width: 12px;
