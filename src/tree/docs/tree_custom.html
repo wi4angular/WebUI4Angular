@@ -1,0 +1,21 @@
+<div ng-controller="TreeDemoCustomCtrl as cc">
+    <style type="text/css">
+        .picon{ background: red;}
+        .cicon{ background: yellow;}
+        .specIcon{ background: #adff2f }
+    </style>
+    <p>
+        【数据源】
+        idfield: 指定 id 字段<br />
+        pidfield: 指定 pid 字段<br />
+        labelfield: 指定 text 字段<br />
+        cls: 可指定节点图标的 class<br />
+        【wiTree属性】<br />
+        pcls: 父节点图标 class（字符串）<br />
+        ccls: 叶子节点图标 class（字符串）
+    </p>
+    <div style="height: 250px;overflow: auto;border: solid 1px #ccc;">
+        <wi-tree labelfield="name" pcls="picon" ccls="cicon"
+                dataProvider="cc.simpleData"></wi-tree>
+    </div>
+</div>

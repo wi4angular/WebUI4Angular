@@ -15,14 +15,14 @@
         <button class="wi-btn" ng-click="selectTab()">选中第一个</button>
     </p>
     <p>
-        select: 选中时的回调方法，参数为此选中 tab 对应的 scope。<br />
-        deselect: 取消选中时的回调方法，参数为此选中 tab 对应的 scope。<br />
-        close: 关闭时的回调方法，参数为此选中 tab 对应的 wiid。<br />
+        onselect: 选中时的回调方法。<br />
+        onbeforeclose: 关闭前的回调方法，若返回 false，将阻止关闭。<br />
+        onclose: 关闭时的回调方法。
     </p>
     <wi-tabset enablerightmenu="true"
-               select="selectFun"
-               deselect="deselectFun"
-               close="closeFun">
+               onselect="selectFun"
+               onbeforeclose="beforeCloseFun"
+               onclose="closeFun">
         <wi-tab ng-repeat="item in items"
                 wiid="{{item.id}}"
                 icon="{{item.icon}}"
@@ -39,10 +39,8 @@
     icon: tab 中图标的 url
     heading: tab 中的文字
     regular: 是否是固定标签 - 若 wi-tabset 中将 closeable 设为 false，此项失效
-    disabled: 是否启用 - 若 wi-tabset 中未将 closeable 设为 false，此项失效
+    disable: 是否启用 - 若 wi-tabset 中未将 closeable 设为 false，此项失效
     active: 是否是选中项，初始化时会选中最后一个设为 true 的标签页
     src: 内容部分的 url
-    select: 标签选中回调
-    deselect: 标签取消选中的回调
     -->
 </div>

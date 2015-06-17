@@ -1,0 +1,27 @@
+<div ng-controller="TreeDemoDataproviderCtrl as dc">
+    <p>
+        id: id字段，可通过 idfield 指定<br />
+        pid: parentid 字段，可通过 pidfield 指定<br />
+        text: 显示字段，可通过 labelfield 指定<br />
+        isbranch: 是否为分支字段，若指定 isbranch=true，则其拥有子节点，需要延迟加载 - 多选且级联选中时不支持<br />
+        selected: 初始时是否选中，默认为 false<br />
+        closed: 是否折叠，默认为 false<br />
+        cls: 节点图标的 class
+    </p>
+    <div class="wi-clearf">
+        <div style="width:49.5%; float:left;">
+            <p style=" height:23px;">
+                <button class="wi-btn" ng-click="dc.myFun()">点我</button>，切换数据源
+            </p>
+            <div style="height: 250px;overflow: auto;border: solid 1px #ccc;">
+                <wi-tree dataProvider="dc.simpleData"></wi-tree>
+            </div>
+        </div>
+        <div style="width:49.5%; float:right;">
+            <p style=" height:23px;">树形结构数据源，isTree="true"（字符串）</p>
+            <div style="height: 250px;overflow: auto;border: solid 1px #ccc;">
+                <wi-tree dataProvider="dc.treeData" istree="true"></wi-tree>
+            </div>
+        </div>
+    </div>
+</div>

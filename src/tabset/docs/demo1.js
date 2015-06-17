@@ -11,20 +11,21 @@ var tabsetMainCtrl1 = ['$scope',function($scope) {
     $scope.selectTab = function(){
         $scope.items[0].active = true;
     };
-    $scope.closeFun = function(id){// 关闭标签页的回调函数 - 参数: tab 的 wiid
+    $scope.selectFun = function(data){// 标签页选中时的回调函数 - 参数: tab 的 data{wiid,src,icon,heading}
+        console.log('select:', data.wiid);
+    };
+    $scope.beforeCloseFun = function(data){// 删除标签前的回调函数，若返回 false，中止删除 - 参数: tab 的 data{wiid,src,icon,heading}
+        var res=confirm('确定要删除 wiid='+data.wiid+',heading='+data.heading+' 的标签页吗？');
+        if(res!=true) return false;
+    };
+    $scope.closeFun = function(data){// 关闭标签页的回调函数 - 参数: tab 的 data{wiid,src,icon,heading}
         for(var i=0; i<$scope.items.length; i++){
             var item = $scope.items[i];
-            if(item.id == id){
+            if(data.wiid && data.wiid==item.wiid || data.heading && data.heading==item.title){
                 $scope.items.splice(i, 1);
                 break;
             }
         }
-    };
-    $scope.selectFun = function(data){// 标签页选中时的回调函数 - 参数: tab 的 scope
-        console.log('select:', data.wiid);
-    };
-    $scope.deselectFun = function(data){// 标签页取消选中的回调函数 - 参数: tab 的 scope
-        console.log('deselect:', data.wiid);
     };
 }];
 angular.module('ui.wisoft').controller('tabsetMainCtrl1',tabsetMainCtrl1);

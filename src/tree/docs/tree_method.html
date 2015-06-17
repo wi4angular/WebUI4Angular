@@ -1,0 +1,21 @@
+<div ng-controller="TreeDemoMethodCtrl as mc">
+    <style type="text/css">
+        .specIcon{ background: #adff2f }
+    </style>
+    <p>
+        <button class="wi-btn" ng-click="mc.loadData()">点我</button>，切换数据源<br />
+        <button class="wi-btn" ng-click="mc.getNode()">点我</button>，控制台显示 text="node1" 的节点<br />
+        <button class="wi-btn" ng-click="mc.getNodes()">点我</button>，控制台显示所有 pic="root" 的节点<br />
+        <button class="wi-btn" ng-click="mc.getSelected()">点我</button>，控制台显示选中项（单选）或选中项集合（多选）<br />
+        <button class="wi-btn" ng-click="mc.select()">点我</button>，选中 text="node1" 的节点<br />
+        <button class="wi-btn" ng-click="mc.collapseNode()">点我</button>，折叠 text="node1" 的节点<br />
+        <button class="wi-btn" ng-click="mc.expandNode()">点我</button>，展开 text="node1" 的节点<br />
+        <button class="wi-btn" ng-click="mc.append()">点我</button>，添加一个根节点<br />
+        <button class="wi-btn" ng-click="mc.remove()">点我</button>，删除 text="node4" 的节点<br />
+        <button class="wi-btn" ng-click="mc.updateNode()">点我</button>，将 text="node1" 的节点文本改为"天安门"，图标样式改为specIcon
+    </p>
+    <div style="height: 250px;overflow: auto;border: solid 1px #ccc;">
+        <wi-tree dataProvider="mc.simpleData"
+                wid="mc.mytree"></wi-tree>
+    </div>
+</div>

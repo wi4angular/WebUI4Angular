@@ -5,6 +5,11 @@
     <title>tree</title>
     <link rel="stylesheet" href="../../themes/default/theme.css"/>
     <link rel="stylesheet" href="../../themes/default/tree.css"/>
+    <style type="text/css">
+        .picon{ background: red;}
+        .cicon{ background: yellow;}
+        .specIcon{ background: #adff2f }
+    </style>
 </head>
 <body ng-controller="mainCtrl" ng-cloak style="height: 100%">
 
@@ -13,23 +18,41 @@
     <input type="text" ng-model="vm.keyword"/>
     <br/>
     <br/>
-    <hr/>
-
+    <input type="button" ng-click="vm.changeData()" value="changeData" />
+    <input type="button" ng-click="vm.changeMul()" value="changeMul" />
+    <input type="button" ng-click="vm.addRoot()" value="addRoot" />
+    <input type="button" ng-click="vm.getSelected()" value="getSelected" />
+    <input type="button" ng-click="vm.doSomething()" value="doSomething" />
+    <hr>
+    <!--<wi-tree dataProvider="vm.treeData"-->
+             <!--isTree="true"/>-->
     <wi-tree dataProvider="vm.simpleData"
              idField="id"
              pidField="parentid"
              labelField="name"
-             multiSelect="true"
-             itemClick="vm.itemClickHandler"
+             multiSelect="vm.mul"
+             pCls="picon"
+             cCls="cicon"
+             cascade="true"
+
+             onItemClick="vm.itemClickHandler"
+             onBeforeExpand="vm.beforeExpHandler"
+             onExpand="vm.itemExpHandler"
+             onBeforeCollapse="vm.beforeCollHandler"
+             onCollapse="vm.itemCollHandler"
+             onLoadBranch="vm.loadBranchHandler"
+             onBeforeSelect="vm.beforeSelectHandler"
+             onSelect="vm.selectHandler"
+             onCancelSelect="vm.cancelSelectHandler"
+
              itemRenderer="myRenderer.html"
              filterBy="vm.keyword"
              orderBy="id"
-             itemOpen="vm.itemOpenHandler"
-             id="vm.mytree"
+             wid="vm.mytree"
              >
         <script type="text/ng-template" id="myRenderer.html">
-            <span>
-                <span ng-if="data['children']">({{data['children'].length}})</span>
+            <span ng-if="data['children']">({{data['children'].length}})</span>
+            <span style="float:right" ng-show="data['wi-treehover']">
                 <a href="#" ng-click="$emit('addNode',data)">增</a>
                 <a href="#" ng-click="$emit('delNode',data)">删</a>
                 <a href="#" ng-click="$emit('updateNode',data)">改</a>
@@ -47,16 +70,14 @@
     function mainCtrl($scope) {
         var vm = $scope.vm = {};
 
-        vm.mytree = {};
-
-        vm.simpleData = [
-            {id:'2',name:'node2',parentid:'root'},
-            {id:'1',name:'node1',parentid:'root'},
-            {id:'3',name:'node3',parentid:'root'},
+        var simpleData = [
+            {id:'13',name:'node13',parentid:'1', selected:true},
+            {id:'2',name:'node2',parentid:'root',cls:'specIcon',closed:true},
+            {id:'1',name:'node1',parentid:'root',closed:true},
+            {id:'3',name:'node3',parentid:'root',closed:true},
             {id:'4',name:'node4',parentid:'root',isbranch:'true'},
-            {id:'13',name:'node13',parentid:'1'},
-            {id:'12',name:'node12',parentid:'1'},
-            {id:'11',name:'node11',parentid:'1'},
+            {id:'12',name:'node12',parentid:'2'},
+            {id:'11',name:'node11',parentid:'2'},
             {id:'21',name:'node21',parentid:'2'},
             {id:'22',name:'node22',parentid:'2'},
             {id:'23',name:'node23',parentid:'2'},
@@ -71,44 +92,94 @@
             {id:'51',name:'子节点一',parentid:'5'},
             {id:'511',name:'孙子节点一',parentid:'51'},
             {id:'513',name:'孙子节点三',parentid:'51'},
-            {id:'512',name:'孙子节点二',parentid:'51'},
+            {id:'512',name:'孙子节点二',parentid:'51'}
         ];
+        var simpleData1 = [
+            {id:'01',name:'node100',parentid:'root'},
+            {id:'02',name:'node101',parentid:'01'},
+            {id:'03',name:'node102',parentid:'01'},
+            {id:'2',name:'node2',parentid:'root'},
+            {id:'1',name:'node1',parentid:'root'},
+            {id:'3',name:'node3',parentid:'root',isbranch:'true'},
+            {id:'4',name:'node4',parentid:'root'},
+            {id:'13',name:'node13',parentid:'1'},
+            {id:'12',name:'node12',parentid:'1'},
+            {id:'11',name:'node11',parentid:'1'},
+            {id:'21',name:'node21',parentid:'2'},
+            {id:'22',name:'node22',parentid:'2'},
+            {id:'23',name:'node23',parentid:'2'},
+            {id:'31',name:'node31',parentid:'4'},
+            {id:'32',name:'node32',parentid:'4'},
+            {id:'33',name:'node33',parentid:'4'},
+            {id:'111',name:'node111',parentid:'11'},
+            {id:'113',name:'node113',parentid:'11'},
+            {id:'112',name:'node112',parentid:'11'},
+            {id:'5',name:'父节点',parentid:'root'},
+            {id:'52',name:'子节点二',parentid:'5'},
+            {id:'51',name:'子节点一',parentid:'5'},
+            {id:'511',name:'孙子节点一',parentid:'51'},
+            {id:'513',name:'孙子节点三',parentid:'51'},
+            {id:'512',name:'孙子节点二',parentid:'51'}
+        ];
+//        vm.mytree.selectedItem = {key: value};//单选
+        var index=0;
+        vm.simpleData = simpleData;
+        vm.changedata = function(){
+//            vm.simpleData = null;
+            if(index++%2==0)
+                vm.simpleData = simpleData1;
+            else
+                vm.simpleData = simpleData;
+        };
+
+        vm.mytree = {};
 
         vm.treeData = [
-            {   label: '中国',
-                provinces: [
+            {
+                id:'1',
+                name: '中国',
+                children: [
                     {
-                        label: '北京',
-                        cities: [
-                            {   label: '朝阳区'    },
-                            {   label: '宣武区'    },
-                            {   label: '海淀区'    }
+                        id:'11',
+                        name: '北京',
+                        children: [
+                            {id:'111',   name: '朝阳区'    },
+                            {id:'112',   name: '宣武区'    },
+                            {id:'113',   name: '海淀区'    }
                         ]
                     },
-                    {   label: '河北',
-                        cities: [
-                            {   label: '石家庄'    },
-                            {   label: '承德' },
-                            {   label: '唐山' }
+                    {
+                        id:'12',
+                        name: '河北',
+                        children: [
+                            {id:'121',   name: '石家庄'    },
+                            {id:'122',   name: '承德' },
+                            {id:'123',   name: '唐山' }
                         ]
                     }
                 ]
             },
-            {   label: '美国',
-                provinces: [
-                    {   label: '纽约',
-                        cities: [
-                            {   label: '曼哈顿区'   },
-                            {   label: '皇后区'    }
+            {
+                id:'2',
+                name: '美国',
+                children: [
+                    {
+                        id:'21',
+                        name: '纽约',
+                        children: [
+                            { id:'211',  name: '曼哈顿区'   },
+                            { id:'212',  name: '皇后区'    }
                         ]
                     },
-                    {   label: '德克萨斯州',
-                        cities: [
-                            {   label: '休斯顿'    },
-                            {   label: '达拉斯'    }
+                    {
+                        id:'22',
+                        name: '德克萨斯州',
+                        children: [
+                            { id:'221',  name: '休斯顿'    },
+                            { id:'222',  name: '达拉斯'    }
                         ]
                     },
-                    {   label: '加利福尼亚州' }
+                    {   id:'23',   name: '加利福尼亚州' }
                 ]
             }
         ];
@@ -117,13 +188,42 @@
 
         vm.itemClickHandler = function (data) {
             vm.selectedItem = data.name;
-        }
+        };
 
+        // 节点展开前
+        vm.beforeExpHandler = function (node) {
+            console.log('展开前',node['name']);
+        };
         // 节点展开
-        vm.itemOpenHandler = function (data, callback) {
+        vm.itemExpHandler = function (node) {
+            console.log('展开',node['name']);
+        };
+        // 节点折叠前
+        vm.beforeCollHandler = function (node) {
+            console.log('折叠前',node['name']);
+            if(node['name']=='父节点') return false;
+        };
+        // 节点折叠
+        vm.itemCollHandler = function (node) {
+            console.log('折叠',node['name']);
+        };
+        // 节点选中前
+        vm.beforeSelectHandler = function (node) {
+            console.log('选中前',node['name']);
+            if(node['name']=='孙子节点一') return false;
+        };
+        // 节点选中
+        vm.selectHandler = function (node) {
+            console.log('选中',node['name']);
+        };
+        // 节点取消选中
+        vm.cancelSelectHandler = function (node) {
+            console.log('取消选中',node['name']);
+        };
+
+        vm.loadBranchHandler = function(data, success, error){
             setTimeout(function () {
                 var children;
-
                 if(data['id'] === '4') {
                     children = [
                         {id:'41',name:'node41',parentid:'4',isbranch:'true'},
@@ -139,22 +239,50 @@
                         {id:'414',name:'node404',parentid:'41'}
                     ];
                 }
+                success(children);
+            },2000);
+        };
 
-                callback(data, children);
-            },2000)
-        }
+        vm.mul=true;
+        vm.changeData = function(){
+            vm.changedata();
+        };
+        vm.changeMul = function(){
+            vm.mul = !vm.mul;
+        };
+        vm.addRoot = function(){// 添加根节点
+            var id = Math.round(Math.random()*Math.pow(10,5));
+            var nodes = [{id:id, name:'node'+id}];
+            vm.mytree.append(nodes);
+        };
+        vm.getSelected = function(){
+            console.log(vm.mytree.getSelected());
+        };
+        vm.doSomething = function(){
+//            console.log(vm.mytree.options());
+//            vm.mytree.loadData(vm.treeData, true);
+//            console.log(vm.mytree.getNode('name','node1'));
+//            console.log(vm.mytree.getNodes('parentid','root'));
+//            console.log(vm.mytree.getSelected());
+//            vm.mytree.select(vm.mytree.getNode('name','node1'));
+//            vm.mytree.collapseNode(vm.mytree.getNode('name','node1'));
+            vm.mytree.expandNode(vm.mytree.getNode('name','node4'));
+//            vm.mytree.updateNode(vm.mytree.getNode('name','node1'),{name: '天安门',cls:'specIcon'});
+        };
 
         // 增
         $scope.$on('addNode', function (event,data) {
             var id = Math.round(Math.random()*Math.pow(10,5));
-            var obj = {id:id,name:'node'+id,parentid:data['id']};
-            vm.mytree.addNode(data,obj);
-        })
+            var nodes = [
+                {id:id,name:'node'+id,parentid:data['id']}
+            ];
+            vm.mytree.append(nodes,data);
+        });
 
         // 删
         $scope.$on('delNode', function (event,data) {
-            vm.mytree.deleteNode(data)
-        })
+            vm.mytree.remove(data)
+        });
 
         // 改
         $scope.$on('updateNode', function (event,data) {

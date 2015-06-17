@@ -1,0 +1,21 @@
+<div ng-controller="tabsetMethodCtrl">
+    <p>
+        <button class="wi-btn" ng-click="options()">点我</button>，控制台输出当前tabset的配置。<br />
+        <button class="wi-btn" ng-click="select()">点我</button>，选中 wiid=3 的 tab。<br />
+        <button class="wi-btn" ng-click="close()">点我</button>，关闭当前选中项。
+    </p>
+    <wi-tabset wid="myTabset">
+        <wi-tab wiid="1" heading="标签 1" icon="misc/icon/redflag16.png" active="true">
+            标签 1 内容
+        </wi-tab>
+        <wi-tab wiid="2" heading="标签 2">
+            标签 2 内容
+        </wi-tab>
+        <wi-tab wiid="3" heading="标签 3">
+            标签 3 内容
+        </wi-tab>
+        <wi-tab wiid="4" heading="标签 4">
+            标签 4 内容
+        </wi-tab>
+    </wi-tabset>
+</div>

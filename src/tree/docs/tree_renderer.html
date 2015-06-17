@@ -1,0 +1,22 @@
+<div ng-controller="TreeDemoRendererCtrl as rc">
+    <style type="text/css">
+        a.treeHref{ color:#ccc;}
+    </style>
+    <p>
+        通过 renderer 扩展节点，data['wi-treehover'] 标识鼠标悬停
+    </p>
+    <div style="height: 250px;overflow: auto;border: solid 1px #ccc;">
+        <wi-tree dataProvider="rc.simpleData"
+                 itemRenderer="myRenderer.html"
+                 wid="rc.mytree">
+            <script type="text/ng-template" id="myRenderer.html">
+                <span ng-if="data['children']">({{data['children'].length}})</span>
+                <span style="float:right" ng-show="data['wi-treehover']">
+                    <a class="treeHref" href="javascript:void(0)" ng-click="$emit('addNode',data)">增</a>
+                    <a class="treeHref" href="javascript:void(0)" ng-click="$emit('delNode',data)">删</a>
+                    <a class="treeHref" href="javascript:void(0)" ng-click="$emit('updateNode',data)">改</a>
+                </span>
+            </script>
+        </wi-tree>
+    </div>
+</div>

@@ -2,11 +2,12 @@
     "cname":"tree",
     "discribe":"Tree(树)",
     "demos":[
-        {"demoDiscribe":"基本","html":"tree/docs/tree_basic.html","js":"tree/docs/tree_basic.js"}
-        ,{"demoDiscribe":"多选","html":"tree/docs/tree_multiSelect.html","js":"tree/docs/tree_multiSelect.js"}
-        ,{"demoDiscribe":"延迟加载","html":"tree/docs/tree_lazyLoad.html","js":"tree/docs/tree_lazyLoad.js"}
-        ,{"demoDiscribe":"过滤节点","html":"tree/docs/tree_filter.html","js":"tree/docs/tree_filter.js"}
-        ,{"demoDiscribe":"自定义节点操作","html":"tree/docs/tree_customOperate.html","js":"tree/docs/tree_customOperate.js"}
-        ,{"demoDiscribe":"自定义图标","html":"tree/docs/tree_customIcon.html","js":"tree/docs/tree_customIcon.js"}
+        {"demoDiscribe":"数据源","html":"tree/docs/tree_dataprovider.html","js":"tree/docs/tree_dataprovider.js"}
+        ,{"demoDiscribe":"自定义","html":"tree/docs/tree_custom.html","js":"tree/docs/tree_custom.js"}
+        ,{"demoDiscribe":"选中","html":"tree/docs/tree_select.html","js":"tree/docs/tree_select.js"}
+        ,{"demoDiscribe":"事件","html":"tree/docs/tree_event.html","js":"tree/docs/tree_event.js"}
+        ,{"demoDiscribe":"wid接口方法","html":"tree/docs/tree_method.html","js":"tree/docs/tree_method.js"}
+        ,{"demoDiscribe":"renderer","html":"tree/docs/tree_renderer.html","js":"tree/docs/tree_renderer.js"}
+        ,{"demoDiscribe":"过滤","html":"tree/docs/tree_filter.html","js":"tree/docs/tree_filter.js"}
     ]
 }

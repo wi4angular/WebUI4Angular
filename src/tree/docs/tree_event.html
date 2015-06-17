@@ -1,0 +1,28 @@
+<div ng-controller="TreeDemoEventCtrl as ec">
+    <p>
+        onitemclick 点击节点时的回调函数:onitemclick(node).<br />
+        onloadbranch 加载延迟节点（isbranch=true 的节点）时的回调函数: onloadbranch(node,success,error).<br />
+        - success(children) 延迟加载成功后的回调函数，参数为要添加到 node 下的子节点;<br />
+        - error() 延迟加载失败后的回调函数.<br />
+        onbeforeexpand 节点展开前的回调函数,返回 false 时阻止展开:onbeforeexpand(node).<br />
+        onexpand 节点展开时的回调函数:onexpand(node).<br />
+        onbeforecollapse 节点折叠前的回调函数,返回 false 时阻止折叠:onbeforecollapse(node).<br />
+        oncollapse 节点折叠时的回调函数:oncollapse(node).<br />
+        onbeforeselect 节点选中前的回调函数:onbeforeselect(node).<br />
+        onselect 节点选中时的回调函数:onselect(node).<br />
+        oncancelselect 取消节点选中时的回调函数:oncancelselect(node).
+    </p>
+    <div style="height: 250px;overflow: auto;border: solid 1px #ccc;">
+        <wi-tree dataProvider="ec.simpleData"
+                 multiselect="true"
+                 onItemClick="ec.itemClick"
+                 onBeforeExpand="ec.beforeExpand"
+                 onExpand="ec.expand"
+                 onBeforeCollapse="ec.beforeCollapse"
+                 onCollapse="ec.collapse"
+                 onLoadBranch="ec.loadBranch"
+                 onBeforeSelect="ec.beforeSelect"
+                 onSelect="ec.select"
+                 onCancelSelect="ec.cancelSelect"></wi-tree>
+    </div>
+</div>

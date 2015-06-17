@@ -1,0 +1,25 @@
+<div ng-controller="TreeDemoSelectCtrl as sc">
+    <p>
+        multiselect 多选，false|true，默认 false，支持绑定 scope 中的对象，并切换多选支持状态。<br />
+        cascade 支持多选时，是否级联父子节点的选中状态，默认为 false
+    </p>
+    <div class="wi-clearf">
+        <div style="width:49.5%; float:left;">
+            <p style=" height:23px;">
+                <button class="wi-btn" ng-click="sc.myFun()">点我</button>，切换多选/单选
+            </p>
+            <div style="height: 250px;overflow: auto;border: solid 1px #ccc;">
+                <wi-tree dataProvider="sc.simpleData"
+                        multiselect="sc.mul"></wi-tree>
+            </div>
+        </div>
+        <div style="width:49.5%; float:right;">
+            <p style=" height:23px;">级联选中状态的复选树，cascade="true"（字符串）</p>
+            <div style="height: 250px;overflow: auto;border: solid 1px #ccc;">
+                <wi-tree dataProvider="sc.cascadeData"
+                        multiselect="true"
+                        cascade="true"></wi-tree>
+            </div>
+        </div>
+    </div>
+</div>
